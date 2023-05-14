@@ -9,7 +9,8 @@ extents = Vector2( 84.5, 11.5 )
 [node name="Main" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-scale = Vector2( 3.36, 1 )
+position = Vector2( 6, 227 )
+scale = Vector2( 6.12, 1.04771 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 position = Vector2( -2.5, 20.5 )
@@ -21,4 +22,4 @@ position = Vector2( -2.5, 20.5 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, -26 )
+position = Vector2( -11, -25 )
