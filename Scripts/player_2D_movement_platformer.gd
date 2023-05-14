@@ -3,14 +3,12 @@ extends KinematicBody2D
 var gravity = 35
 var acceleration = 2000
 var deacceleration = 2000
-var max_speed = 300
-var max_sprint_speed = 500
+var max_speed = 400
 var friction = 2000
 var jump_height = 600
 
 onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
-#onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
 var jump_count
 var motion = Vector2()
@@ -22,39 +20,22 @@ func _ready():
 	timer.one_shot = true
 
 func movement(var delta):
-	if Input.is_action_pressed("ui_down"):
-		sprite.scale = Vector2(1.1, 0.9)
-		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
-	elif Input.is_action_pressed("ui_right"):
-		if Input.is_action_pressed("sprint"):
-			if(hSpeed <-100):
-				hSpeed += (deacceleration * delta)
-			elif(hSpeed < max_sprint_speed):
-				hSpeed += (acceleration * delta)
-				sprite.flip_h = false
+	if Input.is_action_pressed("ui_right"):
+		if(hSpeed <-100):
+			hSpeed += (deacceleration * delta)
+		elif(hSpeed < max_speed):
+			hSpeed += (acceleration * delta)
+			sprite.flip_h = false
 		else:
-			if(hSpeed <-100):
-				hSpeed += (deacceleration * delta)
-			elif(hSpeed < max_speed):
-				hSpeed += (acceleration * delta)
-				sprite.flip_h = false
-			else:
-				hSpeed = 300
+			pass
 	elif Input.is_action_pressed("ui_left"):
-		if Input.is_action_pressed("sprint"):
-			if(hSpeed > 100):
-				hSpeed -= (deacceleration * delta)
-			elif(hSpeed > -max_sprint_speed):
-				hSpeed -= (acceleration * delta)
-				sprite.flip_h = true
+		if(hSpeed > 100):
+			hSpeed -= (deacceleration * delta)
+		elif(hSpeed > -max_speed):
+			hSpeed -= (acceleration * delta)
+			sprite.flip_h = true
 		else:
-			if(hSpeed > 100):
-				hSpeed -= (deacceleration * delta)
-			elif(hSpeed > -max_speed):
-				hSpeed -= (acceleration * delta)
-				sprite.flip_h = true
-			else:
-				hSpeed = -300
+			pass
 	else:
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 
