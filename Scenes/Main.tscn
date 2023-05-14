@@ -5,12 +5,65 @@
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 84.5, 11.5 )
+extents = Vector2( 84.5, 16.9563 )
 
 [node name="Main" type="Node2D"]
+position = Vector2( -11, -24 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 511, -17 )
+rotation = 1.5708
+scale = Vector2( 3.39287, 1.07056 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D3"]
+position = Vector2( -2.5, 20.5 )
+rotation = -0.00587515
+scale = Vector2( 2.64063, 0.359375 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( -2.63012, 14.4781 )
+rotation = -0.0146395
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D3"]
+position = Vector2( 1.76842, 14.9456 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3/Area2D"]
+position = Vector2( -4.44921, 0.808411 )
+rotation = -0.029279
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( -546, -37 )
+rotation = -1.5708
+scale = Vector2( 3.39287, 1.07056 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2"]
+position = Vector2( -2.5, 20.5 )
+scale = Vector2( 2.64063, 0.359375 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -2.5, 23.3654 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D2"]
+position = Vector2( -9.43156, 957.444 )
+rotation = -3.14159
+scale = Vector2( 1, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/Area2D"]
+position = Vector2( -4.71576, 934.092 )
+rotation = 3.14159
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 6, 227 )
+position = Vector2( 1, 227 )
 scale = Vector2( 6.12, 1.04771 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
@@ -19,11 +72,11 @@ scale = Vector2( 2.64063, 0.359375 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -2.5, 20.5 )
+position = Vector2( -2.5, 23.6375 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -7, -28 )
+position = Vector2( 245, 168 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 329, 201 )
+position = Vector2( 66, 131 )
