@@ -11,6 +11,7 @@ var jump_height = 400
 onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
 onready var animation = get_node("AnimationPlayer")
+onready var note = get_node("Camera2D/Control/Note")
 #onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
 var action
@@ -20,32 +21,35 @@ var hSpeed = 0
 var air = false
 
 func _ready():
+	note.hide()
 	animation.play("idle")
 	action = null
 	timer.wait_time = 0.1
 	timer.one_shot = true
 
+func note(a):
+	note.get_node("Label").text = a
+	note.show()
+
 func _unhandled_input(event):
-#	if event.is_action_pressed("interact"):
-#		if action != null and self.visible:
-#			action.activate()
-#			if action.is_in_group("hide"):
-#				self.hide()
-#		elif self.visible == false:
-#			show()
-	
 	if event.is_action_pressed("interact"):
-		if action != null:
+		if note.visible:
+			note.hide()
+		elif action != null:
 			action.activate()
 			if action.is_in_group("hide"):
 				self.visible = !self.visible
 				hSpeed = 0
 				global_position.x = action.global_position.x
+			elif action.is_in_group("note"):
+				pass
+			else:
+				action = null
 
 func movement(var delta):
 	if Input.is_action_pressed("ui_down"):
 		animation.play("crouch")
-		sprite.scale = Vector2(1.1, 0.9)
+		sprite.scale = Vector2(1.05, 0.95)
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 	elif Input.is_action_pressed("ui_right"):
 		animation.play("walk")
@@ -86,6 +90,8 @@ func movement(var delta):
 func _physics_process(delta):
 	if visible == false:
 		return
+	if note.visible:
+		return
 	
 	motion.y += gravity
 	
@@ -112,10 +118,8 @@ func _physics_process(delta):
 	sprite.scale.y = lerp(sprite.scale.y, 1, 0.2)
 
 func _on_Interact_area_entered(area):
-	if is_on_floor():
-		if area.name != "Hurtbox":
+	if area.has_method("activate"):
 			action = area
-			print(action)
 
-func _on_Interact_area_exited(area):
+func _on_Interact_area_exited(_area):
 	action = null

@@ -2,4 +2,4 @@ extends Area2D
 
 func activate():
 	print("hiding animation (wardrobe)")
-	pass
+	get_node("AnimationPlayer").play("activate")

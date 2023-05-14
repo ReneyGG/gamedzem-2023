@@ -5,6 +5,11 @@ var motion = Vector2()
 var gravity = 35
 #later add better acceleration
 
+onready var animation = get_node("AnimationPlayer")
+
+func _ready():
+	animation.play("idle")
+
 func activate():
 	active = true
 
@@ -14,7 +19,6 @@ func _physics_process(_delta):
 		motion.x = 0
 		motion = move_and_slide(motion,Vector2(0,-1))
 	if is_on_floor():
-		#change state
 		pass
 
 func _on_Area2D_body_entered(body):
