@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/torch1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/torch2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/torch3.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Torch.gd" type="Script" id=4]
+[ext_resource path="res://Assets/light_texture_pixel.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "loop"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 0 ]
+}
+
+[node name="Torch" type="AnimatedSprite"]
+frames = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/loop = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -2, -16 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 5 )
+color = Color( 1, 0.854902, 0.576471, 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

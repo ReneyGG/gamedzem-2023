@@ -6,12 +6,12 @@ var deacceleration = 3000
 var max_speed = 150
 var max_sprint_speed = 250
 var friction = 2000
-var jump_height = 400
+var jump_height = 300
 
 onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
 onready var animation = get_node("AnimationPlayer")
-onready var note = get_node("Camera2D/Control/Note")
+#onready var note = get_node("Camera2D/Control/Note")
 #onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
 var action
@@ -21,21 +21,21 @@ var hSpeed = 0
 var air = false
 
 func _ready():
-	note.hide()
+	#note.hide()
 	animation.play("idle")
 	action = null
 	timer.wait_time = 0.1
 	timer.one_shot = true
 
-func note(a):
-	note.get_node("Label").text = a
-	note.show()
+#func note(a):
+#	note.get_node("Label").text = a
+#	note.show()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
-		if note.visible:
-			note.hide()
-		elif action != null:
+#		if note.visible:
+#			note.hide()
+		if action != null:
 			action.activate()
 			if action.is_in_group("hide"):
 				self.visible = !self.visible
@@ -90,8 +90,8 @@ func movement(var delta):
 func _physics_process(delta):
 	if visible == false:
 		return
-	if note.visible:
-		return
+	#if note.visible:
+	#	return
 	
 	motion.y += gravity
 	

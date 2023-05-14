@@ -130,39 +130,6 @@ shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -22 )
-current = true
-
-[node name="Control" type="Control" parent="Camera2D"]
-margin_left = -208.0
-margin_top = -121.0
-margin_right = 208.0
-margin_bottom = 121.0
-
-[node name="Note" type="ColorRect" parent="Camera2D/Control"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -137.0
-margin_right = 128.0
-margin_bottom = -4.0
-mouse_filter = 2
-color = Color( 0.831373, 0.764706, 0.588235, 1 )
-
-[node name="Label" type="Label" parent="Camera2D/Control/Note"]
-self_modulate = Color( 0, 0, 0, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -3.0
-text = "Lorem ipsum dolor sit amet"
-align = 1
-
 [node name="Interact" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
