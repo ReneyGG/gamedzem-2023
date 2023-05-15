@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Assets/sypialnia.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-
 [ext_resource path="res://Scenes/Chandelier.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Wardrobe.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=5]
@@ -11,8 +10,6 @@
 [ext_resource path="res://Scenes/Candelabra.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Camera2D.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=11]
-
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 84.5, 16.9563 )
@@ -67,7 +64,6 @@ position = Vector2( -4.71576, 934.092 )
 rotation = 3.14159
 shape = SubResource( 1 )
 
-
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -516.0
 margin_top = 37.0
@@ -104,7 +100,7 @@ position = Vector2( -217, 181 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -306, 182 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
+[node name="Chandelier2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 66, 131 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
