@@ -1,64 +1,98 @@
 extends KinematicBody2D
 
 var gravity = 35
-var acceleration = 2000
-var deacceleration = 2000
-var max_speed = 300
-var max_sprint_speed = 500
+var acceleration = 3000
+var deacceleration = 3000
+var max_speed = 150
+var max_sprint_speed = 250
 var friction = 2000
-var jump_height = 600
+var jump_height = 300
 
 onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
+onready var animation = get_node("AnimationPlayer")
+#onready var note = get_node("Camera2D/Control/Note")
 #onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
+var action
 var jump_count
 var motion = Vector2()
 var hSpeed = 0
 var air = false
 
 func _ready():
+	#note.hide()
+	animation.play("idle")
+	action = null
 	timer.wait_time = 0.1
 	timer.one_shot = true
 
+#func note(a):
+#	note.get_node("Label").text = a
+#	note.show()
+
+func _unhandled_input(event):
+	if event.is_action_pressed("interact"):
+#		if note.visible:
+#			note.hide()
+		if action != null:
+			action.activate()
+			if action.is_in_group("hide"):
+				self.visible = !self.visible
+				hSpeed = 0
+				global_position.x = action.global_position.x
+			elif action.is_in_group("note"):
+				pass
+			else:
+				action = null
+
 func movement(var delta):
 	if Input.is_action_pressed("ui_down"):
-		sprite.scale = Vector2(1.1, 0.9)
+		animation.play("crouch")
+		sprite.scale = Vector2(1.05, 0.95)
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 	elif Input.is_action_pressed("ui_right"):
-		if Input.is_action_pressed("Sprint"):
+		animation.play("walk")
+		if Input.is_action_pressed("sprint"):
 			if(hSpeed <-100):
 				hSpeed += (deacceleration * delta)
 			elif(hSpeed < max_sprint_speed):
 				hSpeed += (acceleration * delta)
-				sprite.flip_h = false
+				sprite.flip_h = true
 		else:
 			if(hSpeed <-100):
 				hSpeed += (deacceleration * delta)
 			elif(hSpeed < max_speed):
 				hSpeed += (acceleration * delta)
-				sprite.flip_h = false
+				sprite.flip_h = true
 			else:
-				hSpeed = 300
+				hSpeed = max_speed
 	elif Input.is_action_pressed("ui_left"):
-		if Input.is_action_pressed("Sprint"):
+		animation.play("walk")
+		if Input.is_action_pressed("sprint"):
 			if(hSpeed > 100):
 				hSpeed -= (deacceleration * delta)
 			elif(hSpeed > -max_sprint_speed):
 				hSpeed -= (acceleration * delta)
-				sprite.flip_h = true
+				sprite.flip_h = false
 		else:
 			if(hSpeed > 100):
 				hSpeed -= (deacceleration * delta)
 			elif(hSpeed > -max_speed):
 				hSpeed -= (acceleration * delta)
-				sprite.flip_h = true
+				sprite.flip_h = false
 			else:
-				hSpeed = -300
+				hSpeed = -max_speed
 	else:
+		animation.play("idle")
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 
 func _physics_process(delta):
+	if visible == false:
+		return
+	#if note.visible:
+	#	return
+	
 	motion.y += gravity
 	
 	movement(delta)
@@ -82,6 +116,13 @@ func _physics_process(delta):
 	
 	sprite.scale.x = lerp(sprite.scale.x, 1, 0.2)
 	sprite.scale.y = lerp(sprite.scale.y, 1, 0.2)
-	
+
+func _on_Interact_area_entered(area):
+	if area.has_method("activate"):
+			action = area
+
+func _on_Interact_area_exited(_area):
+	action = null
+  
 func death():
 	hide()
