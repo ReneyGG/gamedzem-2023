@@ -123,3 +123,6 @@ func _on_Interact_area_entered(area):
 
 func _on_Interact_area_exited(_area):
 	action = null
+  
+func death():
+	hide()
