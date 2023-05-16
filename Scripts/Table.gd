@@ -1,4 +1,4 @@
-extends Area2D
+class_name Table extends Area2D
 
 var activated
 

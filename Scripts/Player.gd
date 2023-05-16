@@ -1,4 +1,4 @@
-extends KinematicBody2D
+class_name Player extends KinematicBody2D
 
 var gravity = 35
 var acceleration = 3000
@@ -30,6 +30,7 @@ func _ready():
 #func note(a):
 #	note.get_node("Label").text = a
 #	note.show()
+
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 #		if note.visible:
@@ -37,6 +38,10 @@ func _unhandled_input(event):
 		if action != null:
 			action.activate()
 			if action.is_in_group("hide"):
+				#hiding player from enemy
+				set_collision_layer_bit(1, false)
+				set_collision_mask_bit(2, false)
+				
 				self.visible = !self.visible
 				hSpeed = 0
 				global_position.x = action.global_position.x
@@ -86,14 +91,14 @@ func movement(var delta):
 		animation.play("idle")
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 
+
 func _physics_process(delta):
 	if visible == false:
 		return
+		
+	motion.y += gravity
 	#if note.visible:
 	#	return
-	
-	motion.y += gravity
-	
 	movement(delta)
 	if !is_on_floor():
 		air = true
@@ -115,10 +120,17 @@ func _physics_process(delta):
 	
 	sprite.scale.x = lerp(sprite.scale.x, 1, 0.2)
 	sprite.scale.y = lerp(sprite.scale.y, 1, 0.2)
+	
+	#setting player layer to true when getting out of hiding
+	if !get_collision_layer_bit(1):
+		set_collision_layer_bit(1, true)
+		set_collision_mask_bit(2, true)
+		
 
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):
 			action = area
+			
 
 func _on_Interact_area_exited(_area):
 	action = null

@@ -1,45 +1,40 @@
-extends KinematicBody2D
+class_name Enemy extends KinematicBody2D
 
 var gravity = 200
-var speed = 40
-var max_speed = 100
-var motion = Vector2()
-var player = null
-var direction = -1
+export var speed = 35
+var direction = Vector2.LEFT
+export var speed_bonus = 20
+
+onready var motion = speed * direction
+var tempMotion = motion
 
 func _physics_process(delta):
 	motion.y += gravity * delta
-#	if player:
-#		motion = position.direction_to((player.position * speed * delta))
-	if motion.x >= (max_speed * -1) && direction == -1:
-		$Sprite/LookingForPlayerRight.enabled = false
-		$Sprite/LookingForPlayerLeft.enabled = true
-		motion.x += speed * direction * delta
-	elif motion.x <= max_speed && direction == 1:
-		$Sprite/LookingForPlayerLeft.enabled = false
-		$Sprite/LookingForPlayerRight.enabled = true
-		motion.x += speed * direction * delta
-	print(motion.x)
-	motion = move_and_slide(motion)
+	motion = move_and_slide(motion, Vector2.UP)
 	enemy_rotate()
 	chasing()
-	
+	attack()
 
-func enemy_rotate():
-	if $Sprite/RayLeft.is_colliding() && direction == -1:
-		motion.x = 0.0
-		direction = direction * -1
-		get_node("Sprite").set_flip_h(true)
-	elif $Sprite/RayRight.is_colliding() && direction == 1:
-		motion.x = 0.0
-		direction = direction * -1
-		get_node("Sprite").set_flip_h(false)
+func attack():
+	for body in $Attack.get_overlapping_bodies():
+		if body.has_method("death"):
+			body.death()
 	
+func enemy_rotate():
+	var wall_left  = $Sprite/WallDetectors/RayLeft.is_colliding()
+	var wall_right = $Sprite/WallDetectors/RayRight.is_colliding()
+	if (wall_left && direction.x == -1) || (wall_right && direction.x == 1):
+		direction.x *= -1
+		motion.x = direction.x * speed
+		if $Sprite.flip_h:
+			get_node("Sprite").set_flip_h(false)
+		else:
+			get_node("Sprite").set_flip_h(true)
 	
 func chasing():
-	if $Sprite/LookingForPlayerLeft.is_colliding():
-		max_speed = 150
-		motion.x -= 10
-	elif $Sprite/LookingForPlayerRight.is_colliding():
-		max_speed = 150
-		motion.x += 10
+	if $Sprite/LookingForPlayerLeft.is_colliding() && direction.x == -1:
+		motion.x = (speed + speed_bonus) * direction.x
+	elif $Sprite/LookingForPlayerRight.is_colliding() && direction.x == 1:
+		motion.x = (speed + speed_bonus) * direction.x
+	else:
+		motion.x = speed * direction.x
