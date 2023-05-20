@@ -1,21 +1,246 @@
-[gd_scene load_steps=11 format=2]
-
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/sypialnia.png" type="Texture" id=1]
 [ext_resource path="res://Assets/bed.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/chest1.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/PaintingFollow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Main.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Wardrobe.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Room1.gd" type="Script" id=10]
+[ext_resource path="res://font.tres" type="Theme" id=11]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 22 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 221.5, 10 )
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 13, 116 )
+
+[sub_resource type="Shader" id=3]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/god-rays
+
+Feel free to use, improve and change this shader according to your needs
+and consider sharing the modified result on godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.3;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.01;
+
+uniform vec4 color : hint_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+	
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+	
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+	
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+	
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making 
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+	
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+	
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, rays * color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/angle = -0.3
+shader_param/position = -0.2
+shader_param/spread = 0.3
+shader_param/cutoff = 0.1
+shader_param/falloff = 0.2
+shader_param/edge_fade = 0.15
+shader_param/speed = 1.0
+shader_param/ray1_density = 8.0
+shader_param/ray2_density = 30.0
+shader_param/ray2_intensity = 0.01
+shader_param/color = Color( 1, 0.9, 0.65, 0.8 )
+shader_param/hdr = false
+shader_param/seed = 5.0
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 15, 32 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 380, 196 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Trigger"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Enemy:speed_bonus")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 30 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Enemy:gravity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 200 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Enemy:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 380, 80 ), Vector2( 380, 196 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Door:open")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [node name="Room1" type="Node2D"]
+script = ExtResource( 10 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 40.0
@@ -28,7 +253,6 @@ position = Vector2( 210, 123 )
 [node name="Bed" type="Sprite" parent="."]
 position = Vector2( 77, 177 )
 scale = Vector2( 0.755556, 0.755556 )
-
 texture = ExtResource( 2 )
 
 [node name="Chest1" type="Sprite" parent="."]
@@ -38,6 +262,21 @@ texture = ExtResource( 5 )
 [node name="Table" parent="." instance=ExtResource( 4 )]
 position = Vector2( 314, 190 )
 
+[node name="Label" type="Label" parent="Table"]
+margin_left = -28.0
+margin_top = -58.0
+margin_right = 14.0
+margin_bottom = -43.0
+theme = ExtResource( 11 )
+text = "SPACE"
+
+[node name="Area2D" type="Area2D" parent="Table"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Area2D"]
+position = Vector2( -6, -8 )
+shape = SubResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 0, -14 )
@@ -46,16 +285,48 @@ position = Vector2( 0, -14 )
 position = Vector2( 208, 234 )
 shape = SubResource( 1 )
 
-[node name="PaintingFollow" parent="." instance=ExtResource( 6 )]
-position = Vector2( 246, 92 )
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
-[node name="Wardrobe" parent="." instance=ExtResource( 9 )]
-position = Vector2( 148, 160 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 3, 114 )
+shape = SubResource( 5 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 414, 110 )
+shape = SubResource( 5 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
-position = Vector2( 400, 178 )
+position = Vector2( 396, 180 )
 leads = ExtResource( 8 )
+open = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 364, 184 )
+position = Vector2( 222, 184 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 4 )
+margin_left = 202.0
+margin_top = 50.0
+margin_right = 390.0
+margin_bottom = 204.0
+rect_scale = Vector2( -1, 1 )
+
+[node name="DoorTrigger" type="Area2D" parent="."]
+position = Vector2( 400, 178 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+position = Vector2( 1, 0 )
+shape = SubResource( 7 )
+
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 380, 196 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/Trigger = SubResource( 6 )
+
+[connection signal="body_entered" from="Table/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Table/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
