@@ -22,6 +22,8 @@ func attack():
 	if $Attack.monitoring:
 		for body in $Attack.get_overlapping_bodies():
 			if body.has_method("death"):
+				animation.play("Atak")
+				$Timer.start(0.7)
 				$Attack/CollisionLeft.disabled = true
 				$Attack/CollisionRight.disabled = true
 				body.death()
@@ -62,3 +64,7 @@ func stun():
 
 func after():
 	get_node("Attack").set_collision_mask_bit(5,true)
+
+
+func _on_Timer_timeout():
+	pass
