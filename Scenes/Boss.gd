@@ -9,6 +9,7 @@ var speed_bonus_temp = speed_bonus
 var direction = Vector2.LEFT
 var chandelier_hit = 0
 var temp = chandelier_hit
+onready var animation = get_node("AnimationPlayer")
 
 onready var motion = speed * direction
 var tempMotion = motion
@@ -16,6 +17,7 @@ var tempMotion = motion
 func _physics_process(delta):
 	motion.y += gravity * delta
 	motion = move_and_slide(motion, Vector2.UP)
+	animation.play("Walk")
 	enemy_rotate()
 	chasing()
 	attack()
@@ -31,6 +33,7 @@ func ending():
 func stun():
 	$Attack/CollisionLeft.disabled = true
 	$Attack/CollisionRight.disabled = true
+	animation.play("Stun")
 	$Sprite.rotation_degrees = 90
 	set_collision_layer_bit(2, false)
 	set_collision_mask_bit(1, false)

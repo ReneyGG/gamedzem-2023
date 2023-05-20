@@ -97,7 +97,10 @@ position = Vector2( 328, 153 )
 remote_path = NodePath("../../Camera2D")
 
 [node name="Boss" parent="." instance=ExtResource( 4 )]
-position = Vector2( 191, 181 )
+position = Vector2( 219, 154 )
+
+[node name="Enemy" parent="." instance=ExtResource( 10 )]
+position = Vector2( 173, 170 )
 
 [node name="Chandeliers" type="Node2D" parent="."]
 
@@ -121,6 +124,3 @@ leads = NodePath("../Chandelier3")
 
 [node name="Chandelier" parent="Chandeliers" instance=ExtResource( 1 )]
 position = Vector2( 112, 33 )
-
-[node name="Enemy" parent="." instance=ExtResource( 10 )]
-position = Vector2( 203, 170 )
