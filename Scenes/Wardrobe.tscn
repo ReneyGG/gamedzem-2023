@@ -33,6 +33,7 @@ tracks/0/keys = {
 
 [node name="Wardrobe" type="Area2D" groups=["hide"]]
 scale = Vector2( 0.319649, 0.319649 )
+collision_layer = 8
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
