@@ -13,7 +13,6 @@ func activate():
 	$Crouch1.visible = activated
 
 func highlight():
-	print("hl")
 	hl = !hl
 	if hl:
 		$Sprite.frame = 1
