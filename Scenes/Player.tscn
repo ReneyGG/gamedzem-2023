@@ -152,4 +152,6 @@ one_shot = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Interact" to="." method="_on_Interact_area_entered"]
 [connection signal="area_exited" from="Interact" to="." method="_on_Interact_area_exited"]
+
 [connection signal="timeout" from="Dead" to="." method="_on_Dead_timeout"]
+
