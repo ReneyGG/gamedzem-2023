@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Chandelier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/PaintingFollow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Wardrobe.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 296, 18 )
@@ -96,7 +97,10 @@ position = Vector2( 328, 153 )
 remote_path = NodePath("../../Camera2D")
 
 [node name="Boss" parent="." instance=ExtResource( 4 )]
-position = Vector2( 191, 181 )
+position = Vector2( 219, 154 )
+
+[node name="Enemy" parent="." instance=ExtResource( 10 )]
+position = Vector2( 173, 170 )
 
 [node name="Chandeliers" type="Node2D" parent="."]
 
