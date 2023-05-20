@@ -39,14 +39,12 @@ position = Vector2( -38, -22 )
 enabled = true
 cast_to = Vector2( -59, 0 )
 collision_mask = 17
-collide_with_areas = true
 
 [node name="RayRight" type="RayCast2D" parent="Sprite/WallDetectors"]
 position = Vector2( 39, -21 )
 enabled = true
 cast_to = Vector2( 57, 0 )
 collision_mask = 17
-collide_with_areas = true
 
 [node name="Attack" type="Area2D" parent="."]
 collision_layer = 0
