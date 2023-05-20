@@ -1,7 +1,7 @@
 class_name Enemy extends KinematicBody2D
 
 export var gravity = 200
-export var speed = 35
+export var speed = 45
 var direction = Vector2.LEFT
 export var speed_bonus = 20
 export var noticed = false
@@ -26,6 +26,7 @@ func attack():
 				$Timer.start(0.7)
 				$Attack/CollisionLeft.disabled = true
 				$Attack/CollisionRight.disabled = true
+				get_parent().get_node("Camera2D").add_trauma(0.2)
 				body.death()
 
 func enemy_rotate():

@@ -8,6 +8,7 @@ var fell
 #later add better acceleration
 
 onready var animation = get_node("AnimationPlayer")
+onready var camera = get_parent().get_node("Camera2D")
 
 func _ready():
 	fell = false
@@ -27,6 +28,7 @@ func _physics_process(_delta):
 		motion = move_and_slide(motion,Vector2(0,-1))
 	if is_on_floor():
 		fell = true
+		camera.add_trauma(0.3)
 		get_node("Crash").play()
 		var collider = get_slide_collision(0).collider
 		if collider is Enemy:
