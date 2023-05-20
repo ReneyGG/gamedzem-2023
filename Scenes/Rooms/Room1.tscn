@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/sypialnia.png" type="Texture" id=1]
 [ext_resource path="res://Assets/bed.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Nowe/maskotka.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Room1.gd" type="Script" id=10]
 [ext_resource path="res://font.tres" type="Theme" id=11]
 
@@ -18,10 +19,13 @@ extents = Vector2( 32, 22 )
 extents = Vector2( 221.5, 10 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 13, 116 )
+extents = Vector2( 17, 116 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 13, 114.5 )
+extents = Vector2( 16, 114.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 15, 32 )
 
 [sub_resource type="Shader" id=3]
 code = "/*
@@ -148,9 +152,6 @@ shader_param/color = Color( 1, 0.9, 0.65, 0.8 )
 shader_param/hdr = false
 shader_param/seed = 5.0
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 15, 32 )
-
 [sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
@@ -268,14 +269,16 @@ margin_bottom = 40.0
 texture = ExtResource( 1 )
 
 [node name="Bed" type="Sprite" parent="."]
-position = Vector2( 77, 177 )
+position = Vector2( 76, 172 )
+scale = Vector2( 0.866667, 0.866667 )
 texture = ExtResource( 2 )
 
 [node name="Chest" parent="." instance=ExtResource( 5 )]
 position = Vector2( 210, 172 )
 
 [node name="Table" parent="." instance=ExtResource( 4 )]
-position = Vector2( 314, 190 )
+position = Vector2( 316, 185 )
+scale = Vector2( 0.9, 0.9 )
 
 [node name="Label" type="Label" parent="Table"]
 margin_left = -28.0
@@ -315,11 +318,16 @@ shape = SubResource( 9 )
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( 414, 110 )
+position = Vector2( 410, 110 )
 shape = SubResource( 5 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
-position = Vector2( 396, 180 )
+position = Vector2( 397, 178 )
+
+[node name="DoorTrigger" type="Area2D" parent="Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/DoorTrigger"]
+shape = SubResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 184 )
@@ -332,13 +340,6 @@ margin_top = 50.0
 margin_right = 394.0
 margin_bottom = 204.0
 rect_scale = Vector2( -1, 1 )
-
-[node name="DoorTrigger" type="Area2D" parent="."]
-position = Vector2( 400, 178 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
-position = Vector2( 1, 0 )
-shape = SubResource( 7 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 visible = false
@@ -362,7 +363,13 @@ position = Vector2( 218, 178 )
 position = Vector2( -14, 10 )
 shape = SubResource( 10 )
 
+[node name="Maskotka" type="Sprite" parent="."]
+position = Vector2( 73, 162 )
+rotation = 0.872665
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 9 )
+
 [connection signal="body_entered" from="Table/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Table/Area2D" to="." method="_on_Area2D_body_exited"]
-[connection signal="body_entered" from="DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
+[connection signal="body_entered" from="Door/DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
 [connection signal="body_entered" from="Pause" to="." method="_on_Pause_body_entered"]

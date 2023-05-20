@@ -15,7 +15,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 18, 2 )
+extents = Vector2( 22.5, 2 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "idle"
@@ -53,7 +53,7 @@ frames = SubResource( 1 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 20 )
+position = Vector2( -0.5, 20 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
