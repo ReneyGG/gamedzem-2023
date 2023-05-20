@@ -19,6 +19,9 @@ func _physics_process(delta):
 func attack():
 	for body in $Attack.get_overlapping_bodies():
 		if body.has_method("death"):
+			$Attack/CollisionLeft.disabled = true
+			$Attack/CollisionRight.disabled = true
+			print("ATTACK")
 			body.death()
 
 func enemy_rotate():

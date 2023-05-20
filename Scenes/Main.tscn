@@ -130,7 +130,7 @@ shape = SubResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Enemy" parent="SecondRoom" instance=ExtResource( 11 )]
-position = Vector2( 112, 215 )
+position = Vector2( 11, 179 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -286, 220 )

@@ -14,13 +14,8 @@ onready var motion = speed * direction
 var tempMotion = motion
 
 func _physics_process(delta):
-	print("motion.x :", motion.x)
-	print("speed: ", speed)
-	
 	motion.y += gravity * delta
 	motion = move_and_slide(motion, Vector2.UP)
-#	print("chandelier_hit: ",chandelier_hit)
-#	print("temp: ",temp)
 	enemy_rotate()
 	chasing()
 	attack()
@@ -42,7 +37,11 @@ func stun():
 func attack():
 	for body in $Attack.get_overlapping_bodies():
 		if body.has_method("death"):
+			$Attack/CollisionLeft.disabled = true
+			$Attack/CollisionRight.disabled = true
+			print("ATTACK")
 			body.death()
+			
 	
 func enemy_rotate():
 	var wall_left  = $Sprite/WallDetectors/RayLeft.is_colliding()
