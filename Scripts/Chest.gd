@@ -1,6 +1,6 @@
 extends Area2D
 
-export var content = "Lorem ipsum dolor sit amet"
+onready var sprite = get_node("AnimatedSprite")
 
 var hl
 
@@ -9,11 +9,14 @@ func _ready():
 
 func activate():
 	highlight()
-	#get_parent().get_node("Player").note(content)
+	if sprite.frame == 0:
+		sprite.frame = 1
+	else:
+		sprite.frame = 0
 
 func highlight():
 	hl = !hl
-#	if hl: #change later
+#	if hl:
 #		$Sprite.frame = 1
 #	else:
 #		$Sprite.frame = 0
