@@ -59,5 +59,4 @@ func stun():
 	speed_bonus = 0
 
 func after():
-	print("noticed")
 	get_node("Attack").set_collision_mask_bit(5,true)

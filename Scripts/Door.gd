@@ -8,7 +8,12 @@ var hl
 func activate():
 	if open:
 		highlight()
-		get_tree().change_scene(leads)
+		get_node("AnimationPlayer").play("activate")
+	else:
+		get_node("SoundLocked").play()
+
+func end():
+	get_tree().change_scene(leads)
 
 func highlight():
 	hl = !hl
