@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://Scenes/Boss.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Scripts/Enemy.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Table.gd"
 } ]
 _global_script_class_icons={
+"Boss": "",
 "Enemy": "",
 "Player": "",
 "Table": ""
@@ -40,6 +46,8 @@ config/icon="res://icon.png"
 
 window/size/width=420
 window/size/height=245
+window/size/test_width=1080
+window/size/test_height=620
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
