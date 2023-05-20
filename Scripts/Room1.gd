@@ -15,6 +15,7 @@ func _ready():
 	hl = false
 	entered = false
 	get_node("Table/Label").hide()
+	get_node("Door").open = false
 
 func _on_Area2D_body_entered(body):
 	if body.name == "Player":
@@ -27,3 +28,12 @@ func _on_DoorTrigger_body_entered(body):
 	if body.name == "Player" and !entered:
 		entered = true
 		get_node("AnimationPlayer").play("Trigger")
+
+func chest_check():
+	if not get_node("Chest").open:
+		get_node("Enemy").after()
+		get_node("Enemy").noticed = true
+
+func _on_Pause_body_entered(body):
+	if body.has_method("stun") and get_node("Chest").open:
+		body.stun()
