@@ -130,10 +130,10 @@ func _physics_process(delta):
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):
 			action = area
-			print(action)
+			action.highlight()
 
 func _on_Interact_area_exited(_area):
-	action = null
+	action.highlight()
   
 func death():
 	hide()

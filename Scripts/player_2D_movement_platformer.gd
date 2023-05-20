@@ -118,9 +118,11 @@ func _physics_process(delta):
 
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):
-			action = area
+		action = area
+		action.highlight()
 
 func _on_Interact_area_exited(_area):
+	action.highlight()
 	action = null
   
 func death():
