@@ -40,7 +40,6 @@ func stun():
 	speed = 0
 	speed_bonus = 0
 	$Timer.start(3)
-	
 
 func attack():
 	for body in $Attack.get_overlapping_bodies():

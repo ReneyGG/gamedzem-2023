@@ -23,7 +23,7 @@ animations = [ {
 extents = Vector2( 10.7431, 26 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 17.75, 40 )
+extents = Vector2( 29.5, 30 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Calm"

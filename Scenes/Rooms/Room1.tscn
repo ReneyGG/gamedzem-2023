@@ -320,7 +320,6 @@ shape = SubResource( 5 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 396, 180 )
-open = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 184 )
@@ -342,7 +341,7 @@ shape = SubResource( 7 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 visible = false
-position = Vector2( 380, 196 )
+position = Vector2( 380, 80 )
 gravity = 0
 speed = 0
 speed_bonus = 0
