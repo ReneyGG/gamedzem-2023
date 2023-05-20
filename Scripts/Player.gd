@@ -11,6 +11,7 @@ var jump_height = 300
 onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
 onready var animation = get_node("AnimationPlayer")
+export var leads = "res://Scenes/Rooms/Room1.tscn"
 #onready var note = get_node("Note")
 #onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
@@ -136,4 +137,11 @@ func _on_Interact_area_exited(_area):
 	action.highlight()
   
 func death():
-	hide()
+	$Sprite.rotation_degrees = 90
+	$Dead.start(0.2)
+	print("SAFNASUFuasf")
+
+func _on_Dead_timeout():
+	print("DEAD_TIME")
+	$Sprite.rotation_degrees = 0
+	get_tree().change_scene(leads)
