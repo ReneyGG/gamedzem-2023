@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/sypialnia.png" type="Texture" id=1]
 [ext_resource path="res://Assets/bed.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/chest1.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Main.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Room1.gd" type="Script" id=10]
@@ -144,6 +145,100 @@ shader_param/color = Color( 1, 0.9, 0.65, 0.8 )
 shader_param/hdr = false
 shader_param/seed = 5.0
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 15, 32 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 380, 196 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Trigger"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Enemy:speed_bonus")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 30 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Enemy:gravity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 200 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Enemy:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 380, 80 ), Vector2( 380, 196 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Door:open")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [node name="Room1" type="Node2D"]
 script = ExtResource( 10 )
 
@@ -203,8 +298,9 @@ position = Vector2( 414, 110 )
 shape = SubResource( 5 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
-position = Vector2( 400, 178 )
+position = Vector2( 396, 180 )
 leads = ExtResource( 8 )
+open = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 222, 184 )
@@ -217,5 +313,20 @@ margin_right = 390.0
 margin_bottom = 204.0
 rect_scale = Vector2( -1, 1 )
 
+[node name="DoorTrigger" type="Area2D" parent="."]
+position = Vector2( 400, 178 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+position = Vector2( 1, 0 )
+shape = SubResource( 7 )
+
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 380, 196 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/Trigger = SubResource( 6 )
+
 [connection signal="body_entered" from="Table/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Table/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
