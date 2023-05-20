@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/PaintingFollow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Main.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Wardrobe.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Room1.gd" type="Script" id=10]
 [ext_resource path="res://font.tres" type="Theme" id=11]
 
@@ -67,15 +67,15 @@ shape = SubResource( 1 )
 [node name="PaintingFollow" parent="." instance=ExtResource( 6 )]
 position = Vector2( 246, 92 )
 
-[node name="Wardrobe" parent="." instance=ExtResource( 9 )]
-position = Vector2( 148, 160 )
-
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 400, 178 )
 leads = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 222, 184 )
+
+[node name="Note" parent="." instance=ExtResource( 9 )]
+position = Vector2( 156, 176 )
 
 [connection signal="body_entered" from="Table/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Table/Area2D" to="." method="_on_Area2D_body_exited"]

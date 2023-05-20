@@ -11,7 +11,7 @@ var jump_height = 300
 onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
 onready var animation = get_node("AnimationPlayer")
-#onready var note = get_node("Camera2D/Control/Note")
+onready var note = get_node("Note")
 #onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
 var action
@@ -21,21 +21,21 @@ var hSpeed = 0
 var air = false
 
 func _ready():
-	#note.hide()
+	note.hide()
 	animation.play("idle")
 	action = null
 	timer.wait_time = 0.1
 	timer.one_shot = true
 
-#func note(a):
-#	note.get_node("Label").text = a
-#	note.show()
+func note(a):
+	note.get_node("Label").text = a
+	note.show()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
-#		if note.visible:
-#			note.hide()
-		if action != null:
+		if note.visible:
+			note.hide()
+		elif action != null:
 			action.activate()
 			if action.is_in_group("hide"):
 				#hiding player from enemy
@@ -48,7 +48,8 @@ func _unhandled_input(event):
 			elif action.is_in_group("note"):
 				pass
 			else:
-				action = null
+				#action = null
+				pass
 
 func movement(var delta):
 	if Input.is_action_pressed("ui_down"):
@@ -97,8 +98,8 @@ func _physics_process(delta):
 		return
 		
 	motion.y += gravity
-	#if note.visible:
-	#	return
+	if note.visible:
+		return
 	movement(delta)
 	if !is_on_floor():
 		air = true
@@ -128,8 +129,8 @@ func _physics_process(delta):
 
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):
-			action = area
-			action.highlight()
+		action = area
+		action.highlight()
 
 func _on_Interact_area_exited(_area):
 	action.highlight()
