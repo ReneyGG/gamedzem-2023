@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/wardrobe.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Wardrobe.gd" type="Script" id=2]
 [ext_resource path="res://Assets/wardrobe1.png" type="Texture" id=3]
+[ext_resource path="res://SFX/open_door.wav" type="AudioStream" id=4]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -41,8 +42,10 @@ frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -10.7143, 7.14286 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/activate = SubResource( 3 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

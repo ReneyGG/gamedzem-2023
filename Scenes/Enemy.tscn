@@ -127,10 +127,8 @@ speed_bonus = 30
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1.11111, 0 )
 frames = SubResource( 5 )
-
 animation = "Atak"
 frame = 1
-
 
 [node name="LookingForPlayerRight" type="RayCast2D" parent="AnimatedSprite"]
 position = Vector2( 38, -10 )

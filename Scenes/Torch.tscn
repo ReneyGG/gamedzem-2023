@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/torch1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/torch2.png" type="Texture" id=2]
 [ext_resource path="res://Assets/torch3.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Torch.gd" type="Script" id=4]
 [ext_resource path="res://Assets/light_texture_pixel.png" type="Texture" id=5]
+[ext_resource path="res://SFX/fire.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -46,5 +47,8 @@ color = Color( 1, 0.854902, 0.576471, 1 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

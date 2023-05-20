@@ -116,7 +116,7 @@ margin_top = -85.5
 margin_right = -16.0
 margin_bottom = -70.5
 theme = ExtResource( 14 )
-text = "Credits"
+text = "Autorzy"
 align = 1
 valign = 1
 

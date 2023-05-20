@@ -5,6 +5,7 @@ var light
 func _ready():
 	get_node("AnimationPlayer").play("loop")
 	get_node("Timer").start(0.1)
+	get_node("Sound").play()
 
 func _on_Timer_timeout():
 	randomize()

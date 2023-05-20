@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/korytarz.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 291, 18 )
@@ -46,6 +48,7 @@ limit_left = 0
 limit_top = -1
 limit_right = 582
 limit_bottom = 246
+script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, 184 )
@@ -56,6 +59,17 @@ remote_path = NodePath("../../Camera2D")
 [node name="Door" parent="." instance=ExtResource( 3 )]
 position = Vector2( 26, 178 )
 scale = Vector2( -1, 1 )
+leads = "res://Scenes/Rooms/Room2.tscn"
 
 [node name="Door2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 558, 178 )
+leads = "res://Scenes/Rooms/Room3.tscn"
+
+[node name="Torch" parent="." instance=ExtResource( 5 )]
+position = Vector2( 80, 90 )
+
+[node name="Torch2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 296, 90 )
+
+[node name="Torch3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 498, 90 )

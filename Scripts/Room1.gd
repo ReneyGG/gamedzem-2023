@@ -35,6 +35,7 @@ func chest_check():
 	if not get_node("Chest").open:
 		get_node("Enemy").after()
 		get_node("Enemy").noticed = true
+	else:
 		st = true
 
 func _on_Pause_body_entered(body):

@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bajka"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Rooms/Room1.tscn"
 config/icon="res://icon.png"
 
 [display]

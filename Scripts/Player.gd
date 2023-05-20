@@ -137,19 +137,22 @@ func _physics_process(delta):
 
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):
+		print(area)
 		action = area
 		action.highlight()
 
-func _on_Interact_area_exited(_area):
-	action.highlight()
+func _on_Interact_area_exited(area):
+	if area.has_method("activate") and action != null:
+		action.highlight()
+		action = null
   
 func death():
 	$Sprite.rotation_degrees = 90
 #	self.scale.y = 0.5
 #	self.scale.x = 1.5
-	animation.play("death")
+#	animation.play("death")
 	$Dead.start(0.2)
 
 func _on_Dead_timeout():
 	$Sprite.rotation_degrees = 0
-	get_tree().change_scene(leads)
+	get_tree().change_scene("res://Scenes/GameOver.tscn")
