@@ -20,8 +20,10 @@ var jump_count
 var motion = Vector2()
 var hSpeed = 0
 var air = false
+var dead
 
 func _ready():
+	dead = false
 	#note.hide()
 	animation.play("idle")
 	action = null
@@ -96,6 +98,9 @@ func movement(var delta):
 
 
 func _physics_process(delta):
+#	if dead:
+#		return
+	
 	if visible == false:
 		return
 		
@@ -140,10 +145,11 @@ func _on_Interact_area_exited(_area):
   
 func death():
 	$Sprite.rotation_degrees = 90
+#	self.scale.y = 0.5
+#	self.scale.x = 1.5
+	animation.play("death")
 	$Dead.start(0.2)
-	print("SAFNASUFuasf")
 
 func _on_Dead_timeout():
-	print("DEAD_TIME")
 	$Sprite.rotation_degrees = 0
 	get_tree().change_scene(leads)
