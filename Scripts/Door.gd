@@ -1,13 +1,14 @@
 extends Area2D
 
 export(PackedScene) var leads = load("res://Scenes/Main.tscn")
+export(bool) var open = true
 
 var hl
 
 func activate():
-	highlight()
-	print("door")
-	get_tree().change_scene_to(leads)
+	if open:
+		highlight()
+		get_tree().change_scene_to(leads)
 
 func highlight():
 	hl = !hl

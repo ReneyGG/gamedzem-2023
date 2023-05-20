@@ -1,6 +1,6 @@
 class_name Enemy extends KinematicBody2D
 
-var gravity = 200
+export var gravity = 200
 export var speed = 35
 var direction = Vector2.LEFT
 export var speed_bonus = 20
