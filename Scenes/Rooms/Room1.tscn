@@ -341,7 +341,7 @@ shape = SubResource( 7 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 visible = false
-position = Vector2( 380, 80 )
+position = Vector2( 380, 196 )
 gravity = 0
 speed = 0
 speed_bonus = 0
