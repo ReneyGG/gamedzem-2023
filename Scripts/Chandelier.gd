@@ -24,6 +24,16 @@ func _physics_process(_delta):
 		var collider = get_slide_collision(0).collider
 		if collider is Enemy:
 			collider.queue_free()
+		elif collider is Boss:
+			collider.chandelier_hit = collider.chandelier_hit + 1
+			if collider.chandelier_hit == 2:
+				collider.queue_free()
+			queue_free()
+		set_collision_layer_bit(3, true)
+		set_collision_layer_bit(0, false)
+		
+
+			
 
 func _on_Area2D_body_entered(body):
 	if active:
