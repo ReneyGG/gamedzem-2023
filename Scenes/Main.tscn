@@ -100,7 +100,7 @@ position = Vector2( -4, 10 )
 position = Vector2( 68, 121 )
 
 [node name="Wardrobe" parent="SecondRoom" instance=ExtResource( 4 )]
-position = Vector2( 380, 174 )
+position = Vector2( -349, 182 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="SecondRoom"]
 position = Vector2( 498, 119 )
@@ -119,7 +119,7 @@ shape = SubResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -286, 217 )
+position = Vector2( -286, 220 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( -306, 160 )
