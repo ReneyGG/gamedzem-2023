@@ -20,19 +20,19 @@ position = Vector2( -11, -24 )
 
 [node name="Bedroom2" type="Node2D" parent="."]
 
-[node name="wallRight" type="StaticBody2D" parent="Bedroom2"]
+[node name="wallForEnemy" type="StaticBody2D" parent="Bedroom2"]
 position = Vector2( -98.0001, 145 )
 rotation = -1.5708
 scale = Vector2( 1.39287, 1.07056 )
 collision_layer = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom2/wallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom2/wallForEnemy"]
 shape = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="Bedroom2/wallRight"]
+[node name="Area2D" type="Area2D" parent="Bedroom2/wallForEnemy"]
 rotation = -3.14159
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom2/wallRight/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom2/wallForEnemy/Area2D"]
 rotation = 3.14159
 shape = SubResource( 1 )
 
@@ -102,6 +102,7 @@ position = Vector2( 68, 121 )
 
 [node name="Wardrobe" parent="SecondRoom" instance=ExtResource( 4 )]
 position = Vector2( 380, 174 )
+collision_layer = 8
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="SecondRoom"]
 position = Vector2( 498, 119 )
@@ -119,8 +120,12 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondRoom/StaticBody2D3/Area2D"]
 shape = SubResource( 1 )
 
+[node name="Enemy" parent="SecondRoom" instance=ExtResource( 11 )]
+position = Vector2( 112, 215 )
+scale = Vector2( 0.3, 0.3 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -286, 217 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
-position = Vector2( -306, 160 )
+position = Vector2( -307, 159 )
