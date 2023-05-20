@@ -74,5 +74,6 @@ color = Color( 1, 0.854902, 0.576471, 1 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

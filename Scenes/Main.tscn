@@ -100,8 +100,10 @@ position = Vector2( -4, 10 )
 position = Vector2( 68, 121 )
 
 [node name="Wardrobe" parent="SecondRoom" instance=ExtResource( 4 )]
+
 position = Vector2( 380, 174 )
 collision_layer = 8
+
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="SecondRoom"]
 position = Vector2( 498, 119 )
@@ -124,7 +126,7 @@ position = Vector2( 112, 215 )
 scale = Vector2( 0.3, 0.3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -286, 217 )
+position = Vector2( -286, 220 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 9 )]
 position = Vector2( -307, 159 )
