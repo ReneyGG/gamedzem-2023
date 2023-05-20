@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/sypialnia.png" type="Texture" id=1]
 [ext_resource path="res://Assets/bed.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/chest1.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/PaintingFollow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 221.5, 10 )
@@ -44,3 +45,6 @@ position = Vector2( 246, 92 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 208, 182 )
+
+[node name="Torch" parent="." instance=ExtResource( 7 )]
+position = Vector2( 312, 81 )
