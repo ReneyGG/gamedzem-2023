@@ -9,7 +9,7 @@
 extents = Vector2( 294, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 12, 124 )
+extents = Vector2( 20.5, 124 )
 
 [node name="Corridor3" type="Node2D"]
 
@@ -19,38 +19,38 @@ margin_bottom = 246.0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 300, 240 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( -10, -10 )
 shape = SubResource( 1 )
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 2, 106 )
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2( 7, 122 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( 2, 16 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2( 8.5, 0 )
 shape = SubResource( 2 )
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2( 570, 106 )
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2( 563, 107 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 position = Vector2( 2, 16 )
 shape = SubResource( 2 )
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
-position = Vector2( 548, 182 )
+position = Vector2( 551, 178 )
 leads = "res://Scenes/Rooms/SalaTronowa.tscn"
 
 [node name="Door2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 34, 182 )
+position = Vector2( 32, 178 )
 scale = Vector2( -1, 1 )
 leads = "res://Scenes/Rooms/Room3.tscn"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 86, 174 )
+position = Vector2( 71, 172 )
 current = true
 limit_left = 0
 limit_top = -1
@@ -59,7 +59,7 @@ limit_bottom = 246
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 86, 174 )
+position = Vector2( 71, 172 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

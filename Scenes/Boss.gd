@@ -83,4 +83,4 @@ func _on_Timer_timeout():
 		get_node("Sprite").set_flip_h(false)
 	else:
 		get_node("Sprite").set_flip_h(true)
-	speed = speed + 20
+	speed = speed + 30
