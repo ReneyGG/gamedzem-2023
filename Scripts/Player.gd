@@ -113,7 +113,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		sprite.scale = Vector2(0.9, 1.1)
 		timer.start()
-
+	
 	if timer.get_time_left() > 0.0 and jump_count != 0:
 		motion.y = -jump_height
 		jump_count-=1

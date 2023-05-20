@@ -17,12 +17,13 @@ func _physics_process(delta):
 	attack()
 
 func attack():
-	for body in $Attack.get_overlapping_bodies():
-		if body.has_method("death"):
-			$Attack/CollisionLeft.disabled = true
-			$Attack/CollisionRight.disabled = true
-			print("ATTACK")
-			body.death()
+	if $Attack.monitoring:
+		for body in $Attack.get_overlapping_bodies():
+			if body.has_method("death"):
+				$Attack/CollisionLeft.disabled = true
+				$Attack/CollisionRight.disabled = true
+				print("ATTACK")
+				body.death()
 
 func enemy_rotate():
 	var wall_left  = $Sprite/WallDetectors/RayLeft.is_colliding()
@@ -49,5 +50,14 @@ func chasing():
 	else:
 		motion.x = speed * direction.x
 
+func stun():
+	#$Attack.call_deferred("set",true)
+	$Attack.monitoring = false
+	set_collision_layer_bit(2, false)
+	set_collision_mask_bit(1, false)
+	speed = 0
+	speed_bonus = 0
+
 func after():
+	print("noticed")
 	get_node("Attack").set_collision_mask_bit(5,true)
