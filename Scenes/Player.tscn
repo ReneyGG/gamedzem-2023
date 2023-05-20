@@ -147,4 +147,3 @@ anims/walk = SubResource( 6 )
 
 [connection signal="area_entered" from="Interact" to="." method="_on_Interact_area_entered"]
 [connection signal="area_exited" from="Interact" to="." method="_on_Interact_area_exited"]
-

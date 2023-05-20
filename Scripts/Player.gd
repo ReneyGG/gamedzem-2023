@@ -41,6 +41,7 @@ func _unhandled_input(event):
 				#hiding player from enemy
 				set_collision_layer_bit(1, false)
 				set_collision_mask_bit(2, false)
+				set_collision_layer_bit(5, true)
 				
 				self.visible = !self.visible
 				hSpeed = 0
@@ -126,6 +127,7 @@ func _physics_process(delta):
 	if !get_collision_layer_bit(1):
 		set_collision_layer_bit(1, true)
 		set_collision_mask_bit(2, true)
+		set_collision_layer_bit(5, false)
 
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):

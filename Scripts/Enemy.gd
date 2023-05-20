@@ -4,6 +4,7 @@ export var gravity = 200
 export var speed = 35
 var direction = Vector2.LEFT
 export var speed_bonus = 20
+export var noticed = false
 
 onready var motion = speed * direction
 var tempMotion = motion
@@ -19,7 +20,7 @@ func attack():
 	for body in $Attack.get_overlapping_bodies():
 		if body.has_method("death"):
 			body.death()
-	
+
 func enemy_rotate():
 	var wall_left  = $Sprite/WallDetectors/RayLeft.is_colliding()
 	var wall_right = $Sprite/WallDetectors/RayRight.is_colliding()
@@ -30,11 +31,20 @@ func enemy_rotate():
 			get_node("Sprite").set_flip_h(false)
 		else:
 			get_node("Sprite").set_flip_h(true)
-	
+
 func chasing():
-	if $Sprite/LookingForPlayerLeft.is_colliding() && direction.x == -1:
+	if ($Sprite/LookingForPlayerLeft.is_colliding() && direction.x == -1) or noticed:
 		motion.x = (speed + speed_bonus) * direction.x
-	elif $Sprite/LookingForPlayerRight.is_colliding() && direction.x == 1:
+		if !noticed:
+			noticed = true
+			after()
+	elif ($Sprite/LookingForPlayerRight.is_colliding() && direction.x == 1) or noticed:
 		motion.x = (speed + speed_bonus) * direction.x
+		if !noticed:
+			noticed = true
+			after()
 	else:
 		motion.x = speed * direction.x
+
+func after():
+	get_node("Attack").set_collision_mask_bit(5,true)
