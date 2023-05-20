@@ -9,12 +9,12 @@
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
-"loop": true,
+"loop": false,
 "name": "Calm",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ],
-"loop": true,
+"loop": false,
 "name": "Walk",
 "speed": 5.0
 } ]
@@ -80,7 +80,7 @@ speed_bonus = 30
 position = Vector2( 1.11111, 0 )
 frames = SubResource( 5 )
 animation = "Walk"
-frame = 1
+frame = 3
 playing = true
 
 [node name="LookingForPlayerRight" type="RayCast2D" parent="AnimatedSprite"]

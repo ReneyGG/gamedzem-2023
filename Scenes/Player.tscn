@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Player/idle1.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -57,6 +57,9 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+
+[sub_resource type="Animation" id=7]
+resource_name = "death"
 
 [sub_resource type="Animation" id=5]
 resource_name = "idle"
@@ -124,8 +127,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 2 )
 frames = SubResource( 1 )
-animation = "walk"
-frame = 1
+animation = "crouch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.5, -3.5 )
@@ -144,6 +146,7 @@ shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/crouch = SubResource( 4 )
+anims/death = SubResource( 7 )
 anims/idle = SubResource( 5 )
 anims/walk = SubResource( 6 )
 
