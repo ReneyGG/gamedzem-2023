@@ -26,8 +26,8 @@ func _physics_process(_delta):
 			collider.queue_free()
 		elif collider is Boss:
 			collider.chandelier_hit = collider.chandelier_hit + 1
-			if collider.chandelier_hit == 2:
-				collider.queue_free()
+		elif collider is Player:
+			collider.death()
 			queue_free()
 		set_collision_layer_bit(3, true)
 		set_collision_layer_bit(0, false)

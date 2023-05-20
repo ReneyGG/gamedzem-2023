@@ -19,9 +19,14 @@ func _physics_process(delta):
 	enemy_rotate()
 	chasing()
 	attack()
-	if chandelier_hit > temp:
+	if chandelier_hit == 2:
+		ending()
+	elif chandelier_hit > temp:
 		temp = temp + 1
 		stun()
+	
+func ending():
+	queue_free()
 	
 func stun():
 	$Attack/CollisionLeft.disabled = true
@@ -76,4 +81,4 @@ func _on_Timer_timeout():
 		get_node("Sprite").set_flip_h(false)
 	else:
 		get_node("Sprite").set_flip_h(true)
-	speed = speed + 10
+	speed = speed + 20
