@@ -7,8 +7,5 @@ func _ready():
 	$Crouch1.hide()
 
 func activate():
-	print("hiding animation (table)")
-	print(activated)
 	activated = !activated
 	$Crouch1.visible = activated
-	print(activated)
