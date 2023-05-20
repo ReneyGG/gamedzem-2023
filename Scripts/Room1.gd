@@ -1,6 +1,9 @@
 extends Node2D
 
+var hl
+
 func _ready():
+	hl = false
 	get_node("Table/Label").hide()
 
 func _on_Area2D_body_entered(body):
