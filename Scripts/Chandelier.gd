@@ -19,13 +19,14 @@ func activate():
 	active = true
 
 func _physics_process(_delta):
-	if fell:
-		return
-	
 	if active:
 		motion.y += gravity
 		motion.x = 0
 		motion = move_and_slide(motion,Vector2(0,-1))
+	
+	if fell:
+		return
+	
 	if is_on_floor():
 		fell = true
 		camera.add_trauma(0.3)
@@ -41,10 +42,12 @@ func _physics_process(_delta):
 		set_collision_layer_bit(3, true)
 		set_collision_layer_bit(0, false)
 
-func _on_Area2D_body_entered(body):
-	if active:
-		if body.is_in_group("enemy"):
-			body.kill()
+#func _on_Area2D_body_entered(body):
+#	if active:
+#		if body.has_method("stun"):
+#			body.stun()
+#		elif body.has_method("death"):
+#			body.death()
 
 func _on_Timer_timeout():
 	randomize()

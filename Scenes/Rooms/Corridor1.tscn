@@ -59,15 +59,15 @@ leads = "res://Scenes/Rooms/Room1.tscn"
 position = Vector2( 558, 178 )
 leads = "res://Scenes/Rooms/Room2.tscn"
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 186, 184 )
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-
 [node name="Chandelier" parent="." instance=ExtResource( 4 )]
 position = Vector2( 296, 32 )
 
 [node name="ChandelierButton" parent="." instance=ExtResource( 5 )]
 position = Vector2( 294, 172 )
 leads = NodePath("../Chandelier")
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 186, 184 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
