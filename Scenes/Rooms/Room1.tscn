@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/sypialnia.png" type="Texture" id=1]
 [ext_resource path="res://Assets/bed.png" type="Texture" id=2]
@@ -11,23 +11,129 @@
 [ext_resource path="res://Assets/Nowe/maskotka.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Room1.gd" type="Script" id=10]
 [ext_resource path="res://font.tres" type="Theme" id=11]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 22 )
+[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/notel.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 221.5, 10 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 17, 116 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 114.5 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15, 32 )
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 380, 196 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enemy:speed")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Enemy:speed_bonus")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 30 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Enemy:gravity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 200 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Enemy:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 380, 80 ), Vector2( 380, 196 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Door:open")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 3.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "chest_check"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 10, 20 )
+
+[sub_resource type="Shader" id=5]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/god-rays
@@ -136,8 +242,8 @@ void fragment()
 	COLOR = vec4(shine, rays * color.a);
 }"
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
 shader_param/angle = -0.3
 shader_param/position = -0.2
 shader_param/spread = 0.3
@@ -152,114 +258,6 @@ shader_param/color = Color( 1, 0.9, 0.65, 0.8 )
 shader_param/hdr = false
 shader_param/seed = 5.0
 
-[sub_resource type="Animation" id=8]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Enemy:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 380, 196 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "Trigger"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Enemy:speed")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 35 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Enemy:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 3.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Enemy:speed_bonus")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 30 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Enemy:gravity")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 200 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Enemy:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 3.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ Vector2( 380, 80 ), Vector2( 380, 196 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Door:open")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 4.1 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/6/type = "method"
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 3.4 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "chest_check"
-} ]
-}
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 10, 20 )
-
 [node name="Room1" type="Node2D"]
 script = ExtResource( 10 )
 
@@ -273,28 +271,18 @@ position = Vector2( 76, 172 )
 scale = Vector2( 0.866667, 0.866667 )
 texture = ExtResource( 2 )
 
+[node name="Maskotka" type="Sprite" parent="."]
+position = Vector2( 73, 162 )
+rotation = 0.872665
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 9 )
+
 [node name="Chest" parent="." instance=ExtResource( 5 )]
 position = Vector2( 210, 172 )
 
 [node name="Table" parent="." instance=ExtResource( 4 )]
 position = Vector2( 316, 185 )
 scale = Vector2( 0.9, 0.9 )
-
-[node name="Label" type="Label" parent="Table"]
-margin_left = -28.0
-margin_top = -58.0
-margin_right = 14.0
-margin_bottom = -43.0
-theme = ExtResource( 11 )
-text = "SPACE"
-
-[node name="Area2D" type="Area2D" parent="Table"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Area2D"]
-position = Vector2( -6, -8 )
-shape = SubResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 0, -14 )
@@ -307,19 +295,19 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( 3, 114 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="StaticBody2D2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/Area2D"]
 position = Vector2( 3, 114.5 )
-shape = SubResource( 9 )
+shape = SubResource( 3 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2( 410, 110 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 
 [node name="Door" parent="." instance=ExtResource( 7 )]
 position = Vector2( 397, 178 )
@@ -327,19 +315,10 @@ position = Vector2( 397, 178 )
 [node name="DoorTrigger" type="Area2D" parent="Door"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/DoorTrigger"]
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 184 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-self_modulate = Color( 1, 1, 1, 0.490196 )
-material = SubResource( 4 )
-margin_left = 210.0
-margin_top = 50.0
-margin_right = 394.0
-margin_bottom = 204.0
-rect_scale = Vector2( -1, 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
 visible = false
@@ -349,27 +328,66 @@ speed = 0
 speed_bonus = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/RESET = SubResource( 8 )
-anims/Trigger = SubResource( 6 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 210, 123 )
-script = ExtResource( 8 )
+anims/RESET = SubResource( 7 )
+anims/Trigger = SubResource( 8 )
 
 [node name="Pause" type="Area2D" parent="."]
 position = Vector2( 218, 178 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pause"]
 position = Vector2( -14, 10 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
-[node name="Maskotka" type="Sprite" parent="."]
-position = Vector2( 73, 162 )
-rotation = 0.872665
-scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 9 )
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+self_modulate = Color( 1, 1, 1, 0.490196 )
+material = SubResource( 6 )
+margin_left = -9.79242
+margin_top = -128.0
+margin_right = 174.208
+margin_bottom = 26.0
+rect_scale = Vector2( -1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[connection signal="body_entered" from="Table/Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Table/Area2D" to="." method="_on_Area2D_body_exited"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 210, 123 )
+script = ExtResource( 8 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
+light_mask = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.0
+margin_top = -106.0
+margin_right = 106.0
+margin_bottom = 106.0
+texture = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Camera2D/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = 15.0
+margin_right = -60.0
+margin_bottom = -29.0
+theme = ExtResource( 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Lorem ipsum dolor sit amet"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Note" parent="." instance=ExtResource( 12 )]
+position = Vector2( 88, 176 )
 [connection signal="body_entered" from="Door/DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
 [connection signal="body_entered" from="Pause" to="." method="_on_Pause_body_entered"]

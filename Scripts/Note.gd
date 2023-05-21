@@ -9,7 +9,7 @@ func _ready():
 
 func activate():
 	highlight()
-	#get_parent().get_node("Player").note(content)
+	get_parent().get_node("Player").note(content)
 
 func highlight():
 	hl = !hl

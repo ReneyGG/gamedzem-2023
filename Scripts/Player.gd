@@ -12,7 +12,7 @@ onready var sprite = get_node("Sprite")
 onready var timer = get_node("Timer")
 onready var animation = get_node("AnimationPlayer")
 export var leads = "res://Scenes/Rooms/Room1.tscn"
-#onready var note = get_node("Note")
+onready var note = get_parent().get_node("Camera2D/TextureRect")
 #onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
 var action
@@ -24,20 +24,20 @@ var dead
 
 func _ready():
 	dead = false
-	#note.hide()
 	animation.play("idle")
 	action = null
 	timer.wait_time = 0.1
 	timer.one_shot = true
 
-#func note(a):
-#	note.get_node("Label").text = a
-#	note.show()
+func note(a):
+	note.get_node("Label").text = a
+	note.show()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
-#		if note.visible:
-#			note.hide()
+		if note.visible:
+			note.hide()
+			return
 		if action != null:
 			action.activate()
 			if action.is_in_group("hide"):
@@ -105,8 +105,8 @@ func _physics_process(delta):
 		return
 		
 	motion.y += gravity
-#	if note.visible:
-#		return
+	if note.visible:
+		return
 	movement(delta)
 	if !is_on_floor():
 		air = true

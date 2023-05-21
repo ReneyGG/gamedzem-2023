@@ -13,9 +13,11 @@ func _ready():
 func activate():
 	highlight()
 	if sprite.frame == 0:
+		$AnimatedSprite.position = Vector2(5,-4)
 		sprite.frame = 1
 		open = true
 	else:
+		$AnimatedSprite.position = Vector2(0,0)
 		sprite.frame = 0
 		open = false
 

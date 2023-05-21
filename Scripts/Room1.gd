@@ -4,7 +4,6 @@ onready var enemy = get_node("Enemy")
 
 var hl
 var entered
-var st
 
 func _ready():
 	#later add stun for enemy and use here
@@ -12,19 +11,11 @@ func _ready():
 	enemy.speed_bonus = 0
 	enemy.gravity = 0
 	enemy.position = Vector2(380,80)
+	enemy.range_of_sight(400,-400)
 	enemy.hide()
 	hl = false
 	entered = false
-	get_node("Table/Label").hide()
 	get_node("Door").open = false
-	st = false
-
-func _on_Area2D_body_entered(body):
-	if body.name == "Player":
-		get_node("Table/Label").show()
-
-func _on_Area2D_body_exited(body):
-	get_node("Table/Label").hide()
 
 func _on_DoorTrigger_body_entered(body):
 	if body.name == "Player" and !entered:
@@ -33,12 +24,9 @@ func _on_DoorTrigger_body_entered(body):
 
 func chest_check():
 	if not get_node("Chest").open:
-		get_node("Enemy").after()
-		get_node("Enemy").noticed = true
-	else:
-		st = true
+		enemy.after()
+		enemy.noticed = true
 
 func _on_Pause_body_entered(body):
-	if body.has_method("stun") and st:
+	if body.has_method("stun") and enemy.noticed == false:
 		body.stun()
-		print(st)

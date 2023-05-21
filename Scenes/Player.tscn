@@ -8,14 +8,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "crouch",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "crouch",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ) ],
@@ -58,11 +58,10 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=5]
 resource_name = "death"
 
-[sub_resource type="Animation" id=5]
-resource_name = "idle"
+[sub_resource type="Animation" id=6]
 length = 1.4
 loop = true
 tracks/0/type = "value"
@@ -90,8 +89,7 @@ tracks/1/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "walk"
+[sub_resource type="Animation" id=7]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -147,13 +145,12 @@ shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/crouch = SubResource( 4 )
-anims/death = SubResource( 7 )
-anims/idle = SubResource( 5 )
-anims/walk = SubResource( 6 )
+anims/death = SubResource( 5 )
+anims/idle = SubResource( 6 )
+anims/walk = SubResource( 7 )
 
 [node name="Dead" type="Timer" parent="."]
 one_shot = true
-
 [connection signal="area_entered" from="Interact" to="." method="_on_Interact_area_entered"]
 [connection signal="area_exited" from="Interact" to="." method="_on_Interact_area_exited"]
 [connection signal="timeout" from="Dead" to="." method="_on_Dead_timeout"]

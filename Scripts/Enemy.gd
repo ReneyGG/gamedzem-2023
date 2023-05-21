@@ -10,6 +10,10 @@ onready var animation = get_node("AnimationPlayer")
 onready var motion = speed * direction
 var tempMotion = motion
 
+func range_of_sight(r,l):
+	$AnimatedSprite/LookingForPlayerLeft.cast_to = Vector2(l,0)
+	$AnimatedSprite/LookingForPlayerRight.cast_to = Vector2(r,0)
+
 func _physics_process(delta):
 	motion.y += gravity * delta
 	motion = move_and_slide(motion, Vector2.UP)
@@ -56,7 +60,7 @@ func chasing():
 
 func stun():
 	#$Attack.call_deferred("set",true)
-	$Attack.monitoring = false
+	#$Attack.monitoring = false
 	animation.play("Calm")
 	set_collision_layer_bit(2, false)
 	set_collision_mask_bit(1, false)

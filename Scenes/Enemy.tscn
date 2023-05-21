@@ -8,21 +8,21 @@
 [ext_resource path="res://Assets/Enemy/atak2.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Enemy/atak1.png" type="Texture" id=7]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "Atak",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
-"loop": false,
-"name": "Calm",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "Calm",
 "speed": 5.0
 } ]
 
@@ -32,7 +32,7 @@ extents = Vector2( 10.7431, 26 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16.6667, 37.7778 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Atak"
 length = 0.7
 tracks/0/type = "value"
@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Calm"
 length = 0.4
 tracks/0/type = "value"
@@ -88,8 +88,7 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Walking"
+[sub_resource type="Animation" id=6]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -126,14 +125,14 @@ speed_bonus = 30
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1.11111, 0 )
-frames = SubResource( 5 )
+frames = SubResource( 1 )
 animation = "Atak"
 frame = 1
 
 [node name="LookingForPlayerRight" type="RayCast2D" parent="AnimatedSprite"]
 position = Vector2( 38, -10 )
 enabled = true
-cast_to = Vector2( 99.7778, 0 )
+cast_to = Vector2( 100, 0 )
 collision_mask = 2
 
 [node name="LookingForPlayerLeft" type="RayCast2D" parent="AnimatedSprite"]
@@ -173,10 +172,9 @@ position = Vector2( 12.2222, 1.11111 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Atak = SubResource( 7 )
-anims/Calm = SubResource( 6 )
-anims/Walking = SubResource( 4 )
+anims/Atak = SubResource( 4 )
+anims/Calm = SubResource( 5 )
+anims/Walking = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

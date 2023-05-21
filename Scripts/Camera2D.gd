@@ -9,6 +9,7 @@ var trauma = 0.0  # Current shake strength.
 var trauma_power = 2  # Trauma exponent. Use [2, 3].
 
 func _ready():
+	get_node("TextureRect").hide()
 	randomize()
 
 func add_trauma(amount):
