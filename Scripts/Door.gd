@@ -17,8 +17,10 @@ func end():
 	get_tree().change_scene(leads)
 
 func highlight():
+	if $Sprite.frame == 2:
+		return
 	hl = !hl
 	if hl:
-		$ Sprite.frame = 1
+		$Sprite.frame = 1
 	else:
 		$Sprite.frame = 0

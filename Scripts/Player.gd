@@ -70,36 +70,36 @@ func movement(var delta):
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 	elif Input.is_action_pressed("ui_right"):
 		animation.play("walk")
-		if Input.is_action_pressed("Sprint"):
-			if(hSpeed <-100):
-				hSpeed += (deacceleration * delta)
-			elif(hSpeed < max_sprint_speed):
-				hSpeed += (acceleration * delta)
-				sprite.flip_h = true
+#		if Input.is_action_pressed("Sprint"):
+#			if(hSpeed <-100):
+#				hSpeed += (deacceleration * delta)
+#			elif(hSpeed < max_sprint_speed):
+#				hSpeed += (acceleration * delta)
+#				sprite.flip_h = true
+#		else:
+		if(hSpeed <-100):
+			hSpeed += (deacceleration * delta)
+		elif(hSpeed < max_speed):
+			hSpeed += (acceleration * delta)
+			sprite.flip_h = true
 		else:
-			if(hSpeed <-100):
-				hSpeed += (deacceleration * delta)
-			elif(hSpeed < max_speed):
-				hSpeed += (acceleration * delta)
-				sprite.flip_h = true
-			else:
-				hSpeed = max_speed
+			hSpeed = max_speed
 	elif Input.is_action_pressed("ui_left"):
 		animation.play("walk")
-		if Input.is_action_pressed("Sprint"):
-			if(hSpeed > 100):
-				hSpeed -= (deacceleration * delta)
-			elif(hSpeed > -max_sprint_speed):
-				hSpeed -= (acceleration * delta)
-				sprite.flip_h = false
+#		if Input.is_action_pressed("Sprint"):
+#			if(hSpeed > 100):
+#				hSpeed -= (deacceleration * delta)
+#			elif(hSpeed > -max_sprint_speed):
+#				hSpeed -= (acceleration * delta)
+#				sprite.flip_h = false
+#		else:
+		if(hSpeed > 100):
+			hSpeed -= (deacceleration * delta)
+		elif(hSpeed > -max_speed):
+			hSpeed -= (acceleration * delta)
+			sprite.flip_h = false
 		else:
-			if(hSpeed > 100):
-				hSpeed -= (deacceleration * delta)
-			elif(hSpeed > -max_speed):
-				hSpeed -= (acceleration * delta)
-				sprite.flip_h = false
-			else:
-				hSpeed = -max_speed
+			hSpeed = -max_speed
 	else:
 		animation.play("idle")
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
@@ -145,7 +145,6 @@ func _physics_process(delta):
 
 func _on_Interact_area_entered(area):
 	if area.has_method("activate"):
-		print(area)
 		action = area
 		action.highlight()
 

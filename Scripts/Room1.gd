@@ -30,3 +30,4 @@ func chest_check():
 func _on_Pause_body_entered(body):
 	if body.has_method("stun") and enemy.noticed == false:
 		body.stun()
+		get_node("Search").play()
