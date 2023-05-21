@@ -101,7 +101,7 @@ scale = Vector2( 0.6625, 0.6625 )
 texture = ExtResource( 9 )
 
 [node name="Table" parent="." instance=ExtResource( 6 )]
-position = Vector2( 133, 182 )
+position = Vector2( 141, 182 )
 
 [node name="Blat" type="Sprite" parent="."]
 position = Vector2( 193, 174 )
