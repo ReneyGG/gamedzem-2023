@@ -317,16 +317,6 @@ position = Vector2( 397, 178 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/DoorTrigger"]
 shape = SubResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 144, 184 )
-
-[node name="Enemy" parent="." instance=ExtResource( 6 )]
-visible = false
-position = Vector2( 380, 196 )
-gravity = 0
-speed = 0
-speed_bonus = 0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 7 )
 anims/Trigger = SubResource( 8 )
@@ -389,6 +379,16 @@ __meta__ = {
 
 [node name="Note" parent="." instance=ExtResource( 12 )]
 position = Vector2( 88, 176 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 144, 184 )
+
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 380, 196 )
+gravity = 0
+speed = 0
+speed_bonus = 0
 
 [connection signal="body_entered" from="Door/DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
 [connection signal="body_entered" from="Pause" to="." method="_on_Pause_body_entered"]
