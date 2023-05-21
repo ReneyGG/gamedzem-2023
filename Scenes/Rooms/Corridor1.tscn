@@ -100,7 +100,6 @@ editor_draw_limits = true
 script = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
-visible = false
 light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5
