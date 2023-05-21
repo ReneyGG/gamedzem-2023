@@ -196,16 +196,6 @@ scale = Vector2( 1, -1 )
 leads = "res://Scenes/Main.tscn"
 open = false
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 63, 168 )
-current = true
-limit_left = 0
-limit_top = -1
-limit_right = 840
-limit_bottom = 246
-editor_draw_limits = true
-script = ExtResource( 10 )
-
 [node name="Tron" type="Sprite" parent="."]
 position = Vector2( 420, 154 )
 texture = ExtResource( 7 )
@@ -297,3 +287,22 @@ margin_top = 24.0
 margin_right = 278.0
 margin_bottom = 244.0
 rect_scale = Vector2( -1, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 63, 168 )
+current = true
+limit_left = 0
+limit_top = -1
+limit_right = 840
+limit_bottom = 246
+editor_draw_limits = true
+script = ExtResource( 10 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Camera2D/TextureRect"]
+margin_right = 40.0
+margin_bottom = 14.0
