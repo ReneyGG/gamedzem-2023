@@ -336,9 +336,6 @@ margin_top = -128.0
 margin_right = 174.208
 margin_bottom = 26.0
 rect_scale = Vector2( -1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 210, 123 )
@@ -373,9 +370,6 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Lorem ipsum dolor sit amet"
 align = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Note" parent="." instance=ExtResource( 12 )]
 position = Vector2( 88, 176 )
