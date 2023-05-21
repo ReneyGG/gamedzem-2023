@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://font.tres" type="Theme" id=1]
+[ext_resource path="res://SFX/player_death.wav" type="AudioStream" id=2]
+[ext_resource path="res://Scripts/GameOver.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Nowe/Goodending.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+length = 3.0
+tracks/0/type = "audio"
+tracks/0/path = NodePath("Sound")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 2 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.921569, 0.862745, 0.862745, 1 )
+margin_right = 420.0
+margin_bottom = 245.0
+texture = ExtResource( 4 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_right = -280.0
+margin_bottom = -162.0
+rect_scale = Vector2( 3, 3 )
+theme = ExtResource( 1 )
+text = "Happy Ending...?"
+align = 1
+valign = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

@@ -3,7 +3,7 @@ class_name Enemy extends KinematicBody2D
 export var gravity = 200
 export var speed = 45
 var direction = Vector2.LEFT
-export var speed_bonus = 20
+export var speed_bonus = 55
 export var noticed = false
 
 onready var animation = get_node("AnimationPlayer")

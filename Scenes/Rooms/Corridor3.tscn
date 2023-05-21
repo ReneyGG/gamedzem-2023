@@ -1,9 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/korytarz.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://Assets/notel.png" type="Texture" id=5]
+[ext_resource path="res://font.tres" type="Theme" id=6]
+[ext_resource path="res://Scenes/Chandelier.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PaintingFollow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/ChandelierButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Nowe/Obraz_krola.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 294, 20 )
@@ -49,6 +58,40 @@ position = Vector2( 32, 178 )
 scale = Vector2( -1, 1 )
 leads = "res://Scenes/Rooms/Room3.tscn"
 
+[node name="Obraz" type="Sprite" parent="."]
+position = Vector2( 404, 113 )
+scale = Vector2( 0.558592, 0.558592 )
+texture = ExtResource( 13 )
+
+[node name="PaintingFollow" parent="." instance=ExtResource( 8 )]
+position = Vector2( 181, 109 )
+
+[node name="Table" parent="." instance=ExtResource( 10 )]
+position = Vector2( 220, 184 )
+
+[node name="Note" parent="." instance=ExtResource( 9 )]
+position = Vector2( 333, 192 )
+
+[node name="ChandelierButton" parent="." instance=ExtResource( 11 )]
+position = Vector2( 498, 154 )
+leads = NodePath("../Chandelier")
+
+[node name="Chandelier" parent="." instance=ExtResource( 7 )]
+position = Vector2( 402, 46 )
+
+[node name="ChandelierButton2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 81, 155 )
+leads = NodePath("../Chandelier2")
+
+[node name="Chandelier2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 180, 46 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 71, 172 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 71, 172 )
 current = true
@@ -58,8 +101,31 @@ limit_right = 582
 limit_bottom = 246
 script = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 71, 172 )
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
+light_mask = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 36.0
+margin_top = -155.0
+margin_right = 248.0
+margin_bottom = 57.0
+texture = ExtResource( 5 )
+expand = true
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
+[node name="Label" type="Label" parent="Camera2D/TextureRect"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 57.0
+margin_top = 17.0
+margin_right = -57.0
+margin_bottom = -29.0
+theme = ExtResource( 6 )
+align = 1
+autowrap = true
+
+[node name="Enemy" parent="." instance=ExtResource( 12 )]
+position = Vector2( 469, 165 )
