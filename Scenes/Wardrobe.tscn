@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/wardrobe.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Wardrobe.gd" type="Script" id=2]
 [ext_resource path="res://Assets/wardrobe1.png" type="Texture" id=3]
 [ext_resource path="res://SFX/open_door.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/wardrobeh.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0

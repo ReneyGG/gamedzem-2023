@@ -29,6 +29,8 @@ func _physics_process(_delta):
 	
 	if is_on_floor():
 		fell = true
+		animation.stop()
+		$Sprite.frame = 2
 		camera.add_trauma(0.3)
 		get_node("Crash").play()
 		var collider = get_slide_collision(0).collider

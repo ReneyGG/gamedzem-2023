@@ -1,8 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/torch0.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/ChandelierButton.gd" type="Script" id=2]
 [ext_resource path="res://SFX/button.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/torchh.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.41026, 11.859 )
@@ -13,9 +22,9 @@ collision_layer = 8
 collision_mask = 8
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 1 )
+frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3.05665e-07, 6.08974 )
