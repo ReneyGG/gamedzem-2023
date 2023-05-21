@@ -8,7 +8,6 @@ onready var animation = get_node("AnimatedSprite")
 func _ready():
 	blink()
 
-
 func _process(_delta):
 	if blink:
 		return

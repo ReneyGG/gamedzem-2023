@@ -131,6 +131,10 @@ text = ",,Zaprawde, nie masz nic wstretniejszego ponad monstra owe, naturze prze
 align = 1
 autowrap = true
 
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 64, 169 )
 

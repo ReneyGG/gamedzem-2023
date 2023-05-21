@@ -13,7 +13,7 @@ func activate():
 
 func highlight():
 	hl = !hl
-#	if hl: #change later
-#		$Sprite.frame = 1
-#	else:
-#		$Sprite.frame = 0
+	if hl: #change later
+		$Sprite.frame = 1
+	else:
+		$Sprite.frame = 0
