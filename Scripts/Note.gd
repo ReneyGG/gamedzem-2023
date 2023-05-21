@@ -8,6 +8,7 @@ func _ready():
 	hl = false
 
 func activate():
+	get_node("Sound").play()
 	highlight()
 	get_parent().get_node("Player").note(content)
 

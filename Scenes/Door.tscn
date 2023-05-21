@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/door1.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=2]
 [ext_resource path="res://SFX/open_door.wav" type="AudioStream" id=3]
 [ext_resource path="res://SFX/locked_door.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/doorh.png" type="Texture" id=5]
+[ext_resource path="res://Assets/drzwi_openh.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0

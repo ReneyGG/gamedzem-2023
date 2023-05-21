@@ -9,18 +9,21 @@ export var noticed = false
 onready var animation = get_node("AnimationPlayer")
 onready var motion = speed * direction
 var tempMotion = motion
+var stun = false
 
 func range_of_sight(r,l):
 	$AnimatedSprite/LookingForPlayerLeft.cast_to = Vector2(l,0)
 	$AnimatedSprite/LookingForPlayerRight.cast_to = Vector2(r,0)
 
 func _physics_process(delta):
-	motion.y += gravity * delta
-	motion = move_and_slide(motion, Vector2.UP)
-	animation.play("Walking")
 	enemy_rotate()
 	chasing()
 	attack()
+	if stun:
+		return
+	motion.y += gravity * delta
+	motion = move_and_slide(motion, Vector2.UP)
+	animation.play("Walking")
 
 func attack():
 	if $Attack.monitoring:
@@ -66,6 +69,7 @@ func stun():
 	set_collision_mask_bit(1, false)
 	speed = 0
 	speed_bonus = 0
+	stun = true
 
 func after():
 	get_node("Attack").set_collision_mask_bit(5,true)
