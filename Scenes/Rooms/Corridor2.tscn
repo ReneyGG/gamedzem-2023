@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/korytarz.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -20,7 +20,7 @@ extents = Vector2( 291, 18 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 21.5, 122 )
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=5]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/god-rays
@@ -130,7 +130,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+shader = SubResource( 5 )
 shader_param/angle = -0.3
 shader_param/position = -0.2
 shader_param/spread = 0.3
@@ -196,14 +196,6 @@ leads = "res://Scenes/Rooms/Room3.tscn"
 [node name="Torch" parent="." instance=ExtResource( 5 )]
 position = Vector2( 80, 90 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-self_modulate = Color( 1, 1, 1, 0.490196 )
-material = SubResource( 4 )
-margin_left = 383.0
-margin_top = 76.0
-margin_right = 519.0
-margin_bottom = 229.0
-
 [node name="Wardrobe" parent="." instance=ExtResource( 12 )]
 position = Vector2( 164, 160 )
 scale = Vector2( 0.6, 0.6 )
@@ -259,3 +251,11 @@ autowrap = true
 
 [node name="Enemy" parent="." instance=ExtResource( 11 )]
 position = Vector2( 462, 165 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.490196 )
+material = SubResource( 4 )
+margin_left = 383.0
+margin_top = 76.0
+margin_right = 519.0
+margin_bottom = 229.0
