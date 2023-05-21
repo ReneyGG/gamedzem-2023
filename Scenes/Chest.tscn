@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/chest3.png" type="Texture" id=1]
 [ext_resource path="res://Assets/chest1.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Chest.gd" type="Script" id=3]
+[ext_resource path="res://Assets/chest2.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
