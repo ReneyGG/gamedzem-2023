@@ -64,6 +64,7 @@ position = Vector2( 31, 175 )
 rotation = 0.0106969
 scale = Vector2( -1, 1 )
 leads = "res://Scenes/Rooms/Room1.tscn"
+open = false
 
 [node name="Door2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 550, 178 )

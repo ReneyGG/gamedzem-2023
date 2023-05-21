@@ -1,6 +1,5 @@
+
 [gd_scene load_steps=18 format=2]
-
-
 
 [ext_resource path="res://Assets/Nowe/Pierdolona_kuchnia-1.png.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=2]
@@ -54,6 +53,7 @@ shape = SubResource( 2 )
 [node name="Door" parent="." instance=ExtResource( 2 )]
 position = Vector2( 23, 172 )
 scale = Vector2( -1, 1 )
+open = false
 
 [node name="Door2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 398, 178 )
@@ -121,7 +121,6 @@ content = "Sniacy bluszcz wystepuje jedynie na zamku Usse. Jego dokladne pochodz
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 59, 175 )
-
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 210, 123 )

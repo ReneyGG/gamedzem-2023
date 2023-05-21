@@ -38,6 +38,10 @@ func walk_pitch():
 	get_node("Steps").pitch_scale = rand_range(0.8,1.2)
 
 func _unhandled_input(event):
+	if event.is_action_pressed("fullscreen"):
+		 OS.window_fullscreen = !OS.window_fullscreen
+	if event.is_action_pressed("menu"):
+		get_tree().change_scene("res://Scenes/Menu.tscn")
 	if event.is_action_pressed("interact"):
 		if note.visible:
 			note.hide()
