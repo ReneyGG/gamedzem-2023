@@ -41,7 +41,7 @@ _global_script_class_icons={
 config/name="Bajka"
 run/main_scene="res://Scenes/Menu.tscn"
 boot_splash/image="res://Assets/cover.png"
-config/icon="res://icon.png"
+config/icon="res://Assets/Icon/icon.png"
 
 [display]
 
