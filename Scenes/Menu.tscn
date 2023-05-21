@@ -28,7 +28,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Fade:color")
@@ -57,8 +57,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "open"
+[sub_resource type="Animation" id=3]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -204,8 +203,8 @@ scale = Vector2( 0.993056, 1 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade_out = SubResource( 3 )
-anims/open = SubResource( 2 )
+anims/fade_out = SubResource( 2 )
+anims/open = SubResource( 3 )
 
 [node name="Book" type="TextureButton" parent="."]
 margin_left = 146.0
@@ -232,7 +231,6 @@ color = Color( 0, 0, 0, 0 )
 [node name="Pen" type="Sprite" parent="."]
 position = Vector2( 368, 129 )
 texture = ExtResource( 19 )
-
 [connection signal="mouse_entered" from="Okladka2-1/Start/StartButton" to="." method="_on_StartButton_mouse_entered"]
 [connection signal="mouse_exited" from="Okladka2-1/Start/StartButton" to="." method="_on_StartButton_mouse_exited"]
 [connection signal="pressed" from="Okladka2-1/Start/StartButton" to="." method="_on_StartButton_pressed"]
