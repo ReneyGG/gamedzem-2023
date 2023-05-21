@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nwm_co_to.png-7743a7b1397b68ad867458c70406e896.stex"
+path="res://.import/lawka.png-91f3f8937b990c6b681df5213f569c50.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Nowe/nwm_co_to.png"
-dest_files=[ "res://.import/nwm_co_to.png-7743a7b1397b68ad867458c70406e896.stex" ]
+source_file="res://Assets/Nowe/lawka.png"
+dest_files=[ "res://.import/lawka.png-91f3f8937b990c6b681df5213f569c50.stex" ]
 
 [params]
 
