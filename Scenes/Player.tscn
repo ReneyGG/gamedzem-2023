@@ -1,21 +1,22 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Player/idle1.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Player/idle2b.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Player/walk1.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Player/crouch1.png" type="Texture" id=5]
+[ext_resource path="res://SFX/player_walk.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "crouch",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ) ],
@@ -116,6 +117,41 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0, 1 ]
 }
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Steps")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0, 0.4 )
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "walk_pitch"
+}, {
+"args": [  ],
+"method": "walk_pitch"
+} ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -125,7 +161,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 2 )
 frames = SubResource( 1 )
-animation = "crouch"
+animation = "walk"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -151,6 +187,10 @@ anims/walk = SubResource( 7 )
 
 [node name="Dead" type="Timer" parent="."]
 one_shot = true
+
+[node name="Steps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
 [connection signal="area_entered" from="Interact" to="." method="_on_Interact_area_entered"]
 [connection signal="area_exited" from="Interact" to="." method="_on_Interact_area_exited"]
 [connection signal="timeout" from="Dead" to="." method="_on_Dead_timeout"]

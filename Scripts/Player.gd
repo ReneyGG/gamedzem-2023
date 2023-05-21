@@ -33,6 +33,10 @@ func note(a):
 	note.get_node("Label").text = a
 	note.show()
 
+func walk_pitch():
+	randomize()
+	get_node("Steps").pitch_scale = rand_range(0.8,1.2)
+
 func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		if note.visible:

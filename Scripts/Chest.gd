@@ -11,6 +11,7 @@ func _ready():
 	hl = false
 
 func activate():
+	get_node("Sound").play()
 	highlight()
 	if sprite.frame == 0:
 		$AnimatedSprite.position = Vector2(5,-4)
