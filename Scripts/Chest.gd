@@ -3,7 +3,7 @@ extends Area2D
 export var open = false
 
 onready var sprite = get_node("AnimatedSprite")
-
+export (bool) var skrzynia = true
 var hl
 
 func _ready():
@@ -14,9 +14,14 @@ func activate():
 	get_node("Sound").play()
 	highlight()
 	if sprite.frame == 0:
-		$AnimatedSprite.position = Vector2(5,-4)
-		sprite.frame = 1
-		open = true
+		if skrzynia == true:
+			$AnimatedSprite.position = Vector2(5,-4)
+			sprite.frame = 1
+			open = true
+		else:
+			$AnimatedSprite.position = Vector2(5,-4)
+			sprite.frame = 2
+			open = true
 	else:
 		$AnimatedSprite.position = Vector2(0,0)
 		sprite.frame = 0
