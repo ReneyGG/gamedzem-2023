@@ -19,6 +19,6 @@ func end():
 func highlight():
 	hl = !hl
 	if hl:
-		$Sprite.frame = 1
+		$ Sprite.frame = 1
 	else:
 		$Sprite.frame = 0
