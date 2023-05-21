@@ -389,5 +389,6 @@ __meta__ = {
 
 [node name="Note" parent="." instance=ExtResource( 12 )]
 position = Vector2( 88, 176 )
+
 [connection signal="body_entered" from="Door/DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
 [connection signal="body_entered" from="Pause" to="." method="_on_Pause_body_entered"]
