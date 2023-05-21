@@ -1,4 +1,5 @@
-[gd_scene load_steps=10 format=2]
+
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/korytarz.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=2]
@@ -6,7 +7,14 @@
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://Assets/notel.png" type="Texture" id=5]
 [ext_resource path="res://font.tres" type="Theme" id=6]
-[ext_resource path="res://Scenes/Maskotka.tscn" type="PackedScene" id=7]
+
+[ext_resource path="res://Scenes/Chandelier.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PaintingFollow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Table.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/ChandelierButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/Nowe/Obraz_krola.png" type="Texture" id=13]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 294, 20 )
@@ -44,7 +52,7 @@ position = Vector2( 2, 16 )
 shape = SubResource( 2 )
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
-position = Vector2( 551, 178 )
+position = Vector2( 549, 177 )
 leads = "res://Scenes/Rooms/SalaTronowa.tscn"
 
 [node name="Door2" parent="." instance=ExtResource( 2 )]
@@ -52,9 +60,35 @@ position = Vector2( 32, 178 )
 scale = Vector2( -1, 1 )
 leads = "res://Scenes/Rooms/Room3.tscn"
 
-[node name="Maskotka" parent="." instance=ExtResource( 7 )]
-position = Vector2( 396, 104 )
-scale = Vector2( 2, 2 )
+
+[node name="Obraz" type="Sprite" parent="."]
+position = Vector2( 404, 113 )
+scale = Vector2( 0.558592, 0.558592 )
+texture = ExtResource( 13 )
+
+[node name="PaintingFollow" parent="." instance=ExtResource( 8 )]
+position = Vector2( 181, 109 )
+
+[node name="Table" parent="." instance=ExtResource( 10 )]
+position = Vector2( 220, 184 )
+
+[node name="Note" parent="." instance=ExtResource( 9 )]
+position = Vector2( 333, 192 )
+
+[node name="ChandelierButton" parent="." instance=ExtResource( 11 )]
+position = Vector2( 467, 150 )
+leads = NodePath("../Chandelier")
+
+[node name="Chandelier" parent="." instance=ExtResource( 7 )]
+position = Vector2( 402, 46 )
+
+[node name="ChandelierButton2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 109, 151 )
+leads = NodePath("../Chandelier2")
+
+[node name="Chandelier2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 180, 46 )
+
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 71, 172 )
@@ -72,6 +106,7 @@ limit_bottom = 246
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
 light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5

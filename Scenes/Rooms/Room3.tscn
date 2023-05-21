@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Nowe/garden/garden (3).png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Nowe/lawka.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://Assets/notel.png" type="Texture" id=5]
 [ext_resource path="res://font.tres" type="Theme" id=6]
+[ext_resource path="res://Scenes/DoorGarden.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 217, 8 )
@@ -41,24 +43,36 @@ position = Vector2( 429, 124 )
 position = Vector2( 0, 10 )
 shape = SubResource( 2 )
 
-[node name="Door" parent="." instance=ExtResource( 2 )]
-position = Vector2( 22, 176 )
-scale = Vector2( -1, 1 )
+[node name="lawka" type="Sprite" parent="."]
+position = Vector2( 176, 198 )
+scale = Vector2( 1.40625, 1.25 )
+texture = ExtResource( 2 )
+
+[node name="lawka2" type="Sprite" parent="."]
+position = Vector2( 293, 197 )
+scale = Vector2( 1.40625, 1.25 )
+texture = ExtResource( 2 )
+
+[node name="Doorgarden" parent="." instance=ExtResource( 7 )]
+position = Vector2( -3, 202 )
 leads = "res://Scenes/Rooms/Corridor2.tscn"
 
-[node name="Door2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 398, 179 )
+[node name="Doorgarden2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 421, 203 )
 leads = "res://Scenes/Rooms/Corridor3.tscn"
+
+[node name="Note" parent="." instance=ExtResource( 8 )]
+position = Vector2( 277, 199 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 56, 174 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 210, 123 )
-current = true
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
 light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5
