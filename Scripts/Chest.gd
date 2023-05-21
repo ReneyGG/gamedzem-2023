@@ -11,6 +11,7 @@ func _ready():
 	hl = false
 
 func activate():
+	get_node("Sound").play()
 	highlight()
 	if sprite.frame == 0:
 		if skrzynia == true:

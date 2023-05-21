@@ -122,6 +122,7 @@ current = true
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
 light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5

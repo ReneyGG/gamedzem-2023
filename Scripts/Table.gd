@@ -9,6 +9,7 @@ func _ready():
 	$Crouch1.hide()
 
 func activate():
+	get_node("Sound").play()
 	highlight()
 	activated = !activated
 	$Crouch1.visible = activated
