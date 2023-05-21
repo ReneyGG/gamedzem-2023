@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Nowe/Pierdolona_kuchnia-1.png.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/Nowe/Flaga/flag (4).png" type="Texture" id=12]
 [ext_resource path="res://Assets/notel.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=14]
+[ext_resource path="res://font.tres" type="Theme" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 229, 18 )
@@ -114,6 +115,7 @@ texture = ExtResource( 10 )
 
 [node name="Note" parent="." instance=ExtResource( 14 )]
 position = Vector2( 186, 155 )
+content = "Sniacy bluszcz wystepuje jedynie na zamku Usse. Jego dokladne pochodzenie jest nieznane. Pojawil sie 100 lat temu, gdy krolestwo pograzylo sie we snie. Legenda glosi ze jest to zrodlo poteznej mocy magicznej, dajace poczatek Wielkiemu Snieniu. Niestety brakuje smialkow do sprawdzenia tej teorii…"
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 59, 175 )
@@ -123,7 +125,6 @@ position = Vector2( 210, 123 )
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
-visible = false
 light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -136,14 +137,29 @@ margin_bottom = 106.0
 texture = ExtResource( 13 )
 expand = true
 
+[node name="Label2" type="Label" parent="Camera2D/TextureRect"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 35.0
+margin_top = 13.0
+margin_right = 209.0
+margin_bottom = 46.0
+rect_scale = Vector2( 0.8, 0.8 )
+theme = ExtResource( 15 )
+text = "Praktyczna wiedza roslinna"
+align = 1
+autowrap = true
+
 [node name="Label" type="Label" parent="Camera2D/TextureRect"]
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 58.0
-margin_top = 15.0
-margin_right = -58.0
-margin_bottom = -29.0
-text = "gv"
+margin_left = 56.0
+margin_top = 41.0
+margin_right = 14.0
+margin_bottom = 76.0
+rect_scale = Vector2( 0.6, 0.6 )
+theme = ExtResource( 15 )
+text = "Sniacy bluszcz wystepuje jedynie na zamku Usse. Jego dokladne pochodzenie jest nieznane. Pojawil sie 100 lat temu, gdy krolestwo pograzylo sie we snie. Legenda glosi ze jest to zrodlo poteznej mocy magicznej, dajace poczatek Wielkiemu Snieniu. Niestety brakuje smialkow do sprawdzenia tej teorii…"
 align = 1
 autowrap = true
