@@ -82,6 +82,7 @@ leads = NodePath("../Chandelier")
 
 [node name="Note" parent="." instance=ExtResource( 14 )]
 position = Vector2( 219, 191 )
+content = ",,Zaprawde, nie masz nic wstretniejszego ponad monstra owe, naturze przeciwne, [kleks], bo sa to plody plugawego czarostwa i diabelstwa. Sa to lotry bez cnoty, sumienia i skrupulu, istne stwory piekielne, do zabijania jedynie zdatne. Nie masz dla takich jak oni miedzy ludzmi poczciwymi miejsca…”"
 
 [node name="Torch" parent="." instance=ExtResource( 8 )]
 position = Vector2( 78, 98 )
@@ -119,15 +120,17 @@ expand = true
 [node name="Label" type="Label" parent="Camera2D/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 59.1112
-margin_top = 18.2552
-margin_right = -56.8888
-margin_bottom = -25.7448
+margin_left = 54.1112
+margin_top = 27.255
+margin_right = 16.111
+margin_bottom = 103.255
+rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 10 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Lorem ipsum dolor sit amet"
+text = ",,Zaprawde, nie masz nic wstretniejszego ponad monstra owe, naturze przeciwne, [kleks], bo sa to plody plugawego czarostwa i diabelstwa. Sa to lotry bez cnoty, sumienia i skrupulu, istne stwory piekielne, do zabijania jedynie zdatne. Nie masz dla takich jak oni miedzy ludzmi poczciwymi miejsca…”"
 align = 1
 autowrap = true
+
 __meta__ = {
 "_edit_use_anchors_": false
 }

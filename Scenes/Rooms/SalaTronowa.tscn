@@ -226,6 +226,7 @@ leads = NodePath("../Chandelier3")
 [node name="Note" parent="." instance=ExtResource( 11 )]
 position = Vector2( 417, 164 )
 collision_layer = 8
+content = "Istoty magiczne sa z nami od poczatku istnienia. Zrodzone z energii zyciowej ludzi, ich snów lub koszmarow potrafia przybierac rozne formy i bardzo ciezko je rozpoznac. Sa niewyobrazalnym przewodnikiem mocy oraz dostarczaja surowcow o wrecz legendarnych wlasciwosciach jak pioro feniksa czy wlos jednorozca. Te najniebezpieczniejsze, zrodzone z nagromadzenia negatywnej energii zeruja zwykle w nocy. Najwieksza aktywnosc przypada na godzine 3 nad ranem. Znam tylko jeden przypadek czlowieka na tyle odwaznego, lub na tyle glupiego, by wyjsc na spotkanie smierci w godzine upiorow. Ledwo uchodzac z zyciem stracil oczy i jezyk a polowa ciala pozostaje zdeformowana na zawsze. Wiec powiadam wam, mlodzi adepci by NIGDY nie wychodzic w nocy na lowy. Bo z lowcy bardzo szybko wtedy zmieniamy sie w zwierzyne."
 
 [node name="Chandelier" parent="." instance=ExtResource( 1 )]
 position = Vector2( 282, 32 )
@@ -323,13 +324,29 @@ expand = true
 self_modulate = Color( 0, 0, 0, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 57.0
-margin_top = 17.0
-margin_right = -57.0
-margin_bottom = -29.0
+margin_left = 52.0
+margin_top = 25.0
+margin_right = 110.0
+margin_bottom = 265.0
+rect_scale = Vector2( 0.4, 0.4 )
 theme = ExtResource( 12 )
+text = "Istoty magiczne sa z nami od poczatku istnienia. Zrodzone z energii zyciowej ludzi, ich snów lub koszmarow potrafia przybierac rozne formy i bardzo ciezko je rozpoznac. Sa niewyobrazalnym przewodnikiem mocy oraz dostarczaja surowcow o wrecz legendarnych wlasciwosciach jak pioro feniksa czy wlos jednorozca. 
+Te najniebezpieczniejsze, zrodzone z nagromadzenia negatywnej energii zeruja zwykle w nocy. Najwieksza aktywnosc przypada na godzine 3 nad ranem. Znam tylko jeden przypadek czlowieka na tyle odwaznego, lub na tyle glupiego, by wyjsc na spotkanie smierci w godzine upiorow. Ledwo uchodzac z zyciem stracil oczy i jezyk a polowa ciala pozostaje zdeformowana na zawsze. Wiec powiadam wam, mlodzi adepci by NIGDY nie wychodzic w nocy na lowy. Bo z lowcy bardzo szybko wtedy zmieniamy sie w zwierzyne.
+"
 align = 1
 autowrap = true
+
+[node name="Label2" type="Label" parent="Camera2D/TextureRect"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 49.0
+margin_top = 9.0
+margin_right = 213.0
+margin_bottom = 24.0
+rect_scale = Vector2( 0.7, 0.7 )
+theme = ExtResource( 12 )
+text = "Magia i Miecz"
+align = 1
 
 [node name="Door" parent="." instance=ExtResource( 14 )]
 position = Vector2( 830, 187 )

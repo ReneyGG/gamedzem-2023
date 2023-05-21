@@ -1,4 +1,3 @@
-
 [gd_scene load_steps=19 format=2]
 
 
@@ -12,7 +11,6 @@
 [ext_resource path="res://Assets/Nowe/Okno.png" type="Texture" id=7]
 [ext_resource path="res://Assets/notel.png" type="Texture" id=8]
 [ext_resource path="res://font.tres" type="Theme" id=9]
-[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Wardrobe.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/ChandelierButton.tscn" type="PackedScene" id=13]
@@ -199,10 +197,6 @@ leads = "res://Scenes/Rooms/Room3.tscn"
 [node name="Torch" parent="." instance=ExtResource( 5 )]
 position = Vector2( 80, 90 )
 
-[node name="Note" parent="." instance=ExtResource( 10 )]
-position = Vector2( 203, 191 )
-content = "Lorem  amet"
-
 [node name="ColorRect" type="ColorRect" parent="."]
 self_modulate = Color( 1, 1, 1, 0.490196 )
 material = SubResource( 4 )
@@ -212,7 +206,7 @@ margin_right = 519.0
 margin_bottom = 229.0
 
 [node name="Wardrobe" parent="." instance=ExtResource( 12 )]
-position = Vector2( 138, 160 )
+position = Vector2( 164, 160 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="ChandelierButton" parent="." instance=ExtResource( 13 )]
@@ -257,8 +251,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 57.0
 margin_top = 17.0
-margin_right = -55.0
-margin_bottom = -27.0
+margin_right = 12.0
+margin_bottom = 93.0
+rect_scale = Vector2( 0.6, 0.6 )
 theme = ExtResource( 9 )
 align = 1
 autowrap = true
