@@ -127,7 +127,6 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Lorem ipsum dolor sit amet"
 align = 1
 autowrap = true
-
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -137,4 +136,3 @@ position = Vector2( 64, 169 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
-

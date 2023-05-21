@@ -159,4 +159,5 @@ func death():
 
 func _on_Dead_timeout():
 	$Sprite.rotation_degrees = 0
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/GameOver.tscn")

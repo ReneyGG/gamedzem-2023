@@ -1,5 +1,4 @@
-[gd_scene load_steps=14 format=2]
-
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/korytarz.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,11 +6,8 @@
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Nowe/Obraz_krola.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Nowe/Flaga/flag (1).png" type="Texture" id=7]
-[ext_resource path="res://Assets/Nowe/Flaga/flag (2).png" type="Texture" id=8]
 [ext_resource path="res://Assets/notel.png" type="Texture" id=8]
 [ext_resource path="res://font.tres" type="Theme" id=9]
-
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 291, 18 )
@@ -208,7 +204,6 @@ margin_left = 383.0
 margin_top = 76.0
 margin_right = 519.0
 margin_bottom = 229.0
-
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -223,6 +218,7 @@ limit_bottom = 246
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="Camera2D"]
+visible = false
 light_mask = 0
 anchor_left = 0.5
 anchor_top = 0.5

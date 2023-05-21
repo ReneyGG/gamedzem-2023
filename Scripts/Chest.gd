@@ -29,7 +29,13 @@ func activate():
 
 func highlight():
 	hl = !hl
-#	if hl:
-#		$Sprite.frame = 1
-#	else:
-#		$Sprite.frame = 0
+	if hl:
+#		if $AnimatedSprite.frame == 1:
+#			$AnimatedSprite.frame = 4
+#		elif $AnimatedSprite.frame == 2:
+#			$AnimatedSprite.frame = 5
+#		elif $AnimatedSprite.frame == 0:
+#			$AniamtedSprite.frame = 3
+		$AnimatedSprite.frame += 3
+	else:
+		$AnimatedSprite.frame -= 3

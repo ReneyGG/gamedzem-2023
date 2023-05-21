@@ -13,11 +13,12 @@ func activate():
 		get_node("SoundLocked").play()
 
 func end():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene(leads)
 
 func highlight():
 	hl = !hl
-#	if hl:
-#		$Sprite.frame = 1
-#	else:
-#		$Sprite.frame = 0
+	if hl:
+		$Sprite.frame = 1
+	else:
+		$Sprite.frame = 0
