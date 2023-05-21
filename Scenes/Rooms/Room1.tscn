@@ -8,10 +8,10 @@
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=8]
-[ext_resource path="res://Assets/Nowe/maskotka.png" type="Texture" id=9]
+[ext_resource path="res://SFX/door_bang.wav" type="AudioStream" id=9]
 [ext_resource path="res://Scripts/Room1.gd" type="Script" id=10]
 [ext_resource path="res://font.tres" type="Theme" id=11]
-[ext_resource path="res://Scenes/Note.tscn" type="PackedScene" id=12]
+[ext_resource path="res://SFX/enemy_walk.wav" type="AudioStream" id=12]
 [ext_resource path="res://Assets/notel.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -128,6 +128,46 @@ tracks/6/keys = {
 "args": [  ],
 "method": "chest_check"
 } ]
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("Bang")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 2.5 )
+}
+tracks/8/type = "audio"
+tracks/8/path = NodePath("Steps")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0.4 )
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Steps:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.4, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.0, 6.0, -12.0 ]
 }
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -271,12 +311,6 @@ position = Vector2( 76, 172 )
 scale = Vector2( 0.866667, 0.866667 )
 texture = ExtResource( 2 )
 
-[node name="Maskotka" type="Sprite" parent="."]
-position = Vector2( 73, 162 )
-rotation = 0.872665
-scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 9 )
-
 [node name="Chest" parent="." instance=ExtResource( 5 )]
 position = Vector2( 210, 172 )
 
@@ -371,18 +405,22 @@ text = "Lorem ipsum dolor sit amet"
 align = 1
 autowrap = true
 
-[node name="Note" parent="." instance=ExtResource( 12 )]
-position = Vector2( 88, 176 )
-
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 144, 184 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
-visible = false
 position = Vector2( 380, 196 )
-gravity = 0
-speed = 0
-speed_bonus = 0
+speed = 35
+speed_bonus = 30
+
+[node name="Bang" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 480, 114 )
+stream = ExtResource( 9 )
+
+[node name="Steps" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 480, 114 )
+stream = ExtResource( 12 )
+volume_db = -12.0
 
 [connection signal="body_entered" from="Door/DoorTrigger" to="." method="_on_DoorTrigger_body_entered"]
 [connection signal="body_entered" from="Pause" to="." method="_on_Pause_body_entered"]

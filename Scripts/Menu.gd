@@ -9,6 +9,10 @@ func _ready():
 	get_node("AnimatedSprite").frame = 0
 	get_node("AnimatedSprite").position = Vector2(222,128)
 
+func _unhandled_input(event):
+	if event.is_action_pressed("fullscreen"):
+		 OS.window_fullscreen = !OS.window_fullscreen
+
 func _on_Book_pressed():
 	animation.play("open")
 	get_node("Book").queue_free()
@@ -43,7 +47,7 @@ func _on_KoniecButton_pressed():
 	get_tree().quit()
 
 func game():
-	get_tree().change_scene("res://Scenes/Rooms/Room1.tscn")
+	get_tree().change_scene(next)
 
 func butt_stuff():
 	get_node("Button").play()
