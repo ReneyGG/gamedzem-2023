@@ -28,6 +28,7 @@ func _physics_process(delta):
 		stun()
 	
 func ending():
+	get_parent().get_node("Door").open = true
 	queue_free()
 	
 func stun():

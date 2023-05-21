@@ -367,6 +367,7 @@ align = 1
 [node name="Door" parent="." instance=ExtResource( 14 )]
 position = Vector2( 830, 187 )
 leads = "res://Scenes/HappyEnding.tscn"
+open = false
 
 [node name="Sprite" type="AnimatedSprite" parent="Door"]
 position = Vector2( 0, -267 )

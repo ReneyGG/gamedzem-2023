@@ -21,6 +21,7 @@ var motion = Vector2()
 var hSpeed = 0
 var air = false
 var dead
+var idtime = false
 
 func _ready():
 	dead = false
@@ -70,6 +71,7 @@ func movement(var delta):
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
 	elif Input.is_action_pressed("ui_right"):
 		animation.play("walk")
+		idtime = false
 #		if Input.is_action_pressed("Sprint"):
 #			if(hSpeed <-100):
 #				hSpeed += (deacceleration * delta)
@@ -86,6 +88,7 @@ func movement(var delta):
 			hSpeed = max_speed
 	elif Input.is_action_pressed("ui_left"):
 		animation.play("walk")
+		idtime = false
 #		if Input.is_action_pressed("Sprint"):
 #			if(hSpeed > 100):
 #				hSpeed -= (deacceleration * delta)
@@ -101,9 +104,12 @@ func movement(var delta):
 		else:
 			hSpeed = -max_speed
 	else:
-		animation.play("idle")
+		if !idtime:
+			animation.play("idle")
 		hSpeed -= min(abs(hSpeed), friction * delta) * sign(hSpeed)
-
+		if !idtime:
+			get_node("IdleTimer").start()
+			idtime = true
 
 func _physics_process(delta):
 #	if dead:
@@ -164,3 +170,7 @@ func _on_Dead_timeout():
 	$Sprite.rotation_degrees = 0
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/GameOver.tscn")
+
+func _on_IdleTimer_timeout():
+	animation.play("hair")
+	
